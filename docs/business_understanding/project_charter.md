@@ -2,11 +2,11 @@
 
 ## Nombre del Proyecto
 
-[Nombre del proyecto aquí]
+Análisis comparativo de productos de Running entre Nike, Adidas y Nation Runner
 
 ## Objetivo del Proyecto
 
-[Descripción breve del objetivo del proyecto y por qué es importante]
+Desarrollar una herramienta computacional que permita realizar un análisis de comparación de zapatos para running, con datos seleccionados de varias tiendas retail mediante técnicas de procesamiento de lenguaje natural y técnicas de pre-procesamiento de datos que incluyan Grandes Modelos de Lenguaje.
 
 ## Alcance del Proyecto
 
@@ -22,7 +22,7 @@
 
 ## Metodología
 
-[Descripción breve de la metodología que se utilizará para llevar a cabo el proyecto]
+CRISP-DM y SCRUM
 
 ## Cronograma
 
