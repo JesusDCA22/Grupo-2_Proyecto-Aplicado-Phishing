@@ -38,8 +38,9 @@ Hay que tener en cuenta que estas fechas son de ejemplo, estas deben ajustarse d
 
 ## Equipo del Proyecto
 
-- [Nombre y cargo del líder del proyecto]
-- [Nombre y cargo de los miembros del equipo]
+- Daniel Galvis CC 1010038257 cgalvisn@unal.edu.co
+- Juan Correa CC 1013653882 jumcorrealo@unal.edu.co
+- Asdrúval Zácipa Corredor CC 79139929 azacipac@unal.edu.co
 
 ## Presupuesto
 
