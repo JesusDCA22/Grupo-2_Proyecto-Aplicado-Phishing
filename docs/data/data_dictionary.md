@@ -9,7 +9,7 @@
 | id | Descripción de la variable 1 | string |  | 046zSiHm8Cz0fZYwMJlL |
 | details | detalles del producto scrapeado, data semi estructurada que contiene detalles técnicos del mismo | string | - | '{Horma clásica} {Parte superior sintética}...' |
 | store | nombre de la tienda que vende el producto | string |  | adidas |
-| manufacturer | nombre de la empesa que crea el producto |  | adidas |
+| manufacturer | nombre de la empesa que crea el producto | string |  | adidas |
 | url | url desde la que se extrajo el producto | string |  | https://www.adidas.co/tenis-duramo-sl/IF7884.html |
 | title | nombre del producto | string |  | Tenis Duramo SL |
 | regularPrice | precio del producto sin descuento | string |  | $379.950 |
