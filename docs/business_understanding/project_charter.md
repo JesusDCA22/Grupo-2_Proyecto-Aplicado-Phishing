@@ -10,6 +10,10 @@ Desarrollar una herramienta computacional que permita realizar un análisis de c
 
 ## Alcance del Proyecto
 
+El alcance del proyecto es el de construir un modelo de recomendación basado en embeddings que permita generar recomendaciones basadas en similaridad de atributos de calzado deportivo para running con los necesidades del cliente.
+
+Se propone el uso de embeddings teniendo en cuenta que los datos de los cuales disponemos corresponden a datos textuales de las características de los diferentes tipos de calzado deportivo. Se busca aplicar técnicas de embeddings utilizando modelos LLM (Large Language Model), con el fin de tener una mejor precisión semántica, basada en similaridad contextual.
+
 ### Incluye:
 
 - [Descripción de los datos disponibles]
@@ -28,13 +32,11 @@ CRISP-DM y SCRUM
 
 | Etapa | Duración Estimada | Fechas |
 |------|---------|-------|
-| Entendimiento del negocio y carga de datos | 2 semanas | del 1 de mayo al 15 de mayo |
-| Preprocesamiento, análisis exploratorio | 4 semanas | del 16 de mayo al 15 de junio |
-| Modelamiento y extracción de características | 4 semanas | del 16 de junio al 15 de julio |
-| Despliegue | 2 semanas | del 16 de julio al 31 de julio |
-| Evaluación y entrega final | 3 semanas | del 1 de agosto al 21 de agosto |
-
-Hay que tener en cuenta que estas fechas son de ejemplo, estas deben ajustarse de acuerdo al proyecto.
+| Entendimiento del negocio y carga de datos | 2 semanas | del 13 de noviembre al 28 de noviembre |
+| Preprocesamiento, análisis exploratorio | 1 semana | del 29 de noviembre al 5 de diciembre |
+| Modelamiento y extracción de características | 1 semana | del 5 de diciembre al 12 de diciembre |
+| Despliegue | 1 semana | del 13 de diciembre al 19 de diciembre |
+| Evaluación y entrega final | 1 semana | del 19 de diciembre al 21 de diciembre |
 
 ## Equipo del Proyecto
 
