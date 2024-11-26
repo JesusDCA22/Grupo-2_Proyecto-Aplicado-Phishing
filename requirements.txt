@@ -1,4 +1,8 @@
-alpaca-trade-api
-torch fairscale fire blobfile
+torch
+fairscale 
+fire 
+blobfile
 pandas
 ollama
+requests
+openpyxl
