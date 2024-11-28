@@ -27,17 +27,17 @@ Se propone el uso de embeddings debido a que los datos disponibles consisten en 
 
 ## Metodología
 
-CRISP-DM y SCRUM
+Se utilizarán las metodologías CRISP-DM y SCRUM para llevar a cabo el proyecto.
 
 ## Cronograma
 
 | Etapa                                    | Duración Estimada | Fechas                          |
 |-----------------------------------------|-------------------|---------------------------------|
-| Entendimiento del negocio y carga de datos | 2 semanas         | del 13 de noviembre al 28 de noviembre |
-| Preprocesamiento y análisis exploratorio | 1 semana          | del 29 de noviembre al 5 de diciembre |
-| Modelamiento y extracción de características | 1 semana          | del 5 de diciembre al 12 de diciembre |
-| Despliegue                               | 1 semana          | del 13 de diciembre al 19 de diciembre |
-| Evaluación y entrega final               | 1 semana          | del 19 de diciembre al 21 de diciembre |
+| Entendimiento del negocio y carga de datos | 2 semanas         | Del 13 de noviembre al 28 de noviembre |
+| Preprocesamiento y análisis exploratorio | 1 semana          | Del 29 de noviembre al 5 de diciembre |
+| Modelamiento y extracción de características | 1 semana          | Del 5 de diciembre al 12 de diciembre |
+| Despliegue                               | 1 semana          | Del 13 de diciembre al 19 de diciembre |
+| Evaluación y entrega final               | 1 semana          | Del 19 de diciembre al 21 de diciembre |
 
 ## Equipo del Proyecto
 
@@ -47,9 +47,7 @@ CRISP-DM y SCRUM
 
 ## Presupuesto
 
-## Presupuesto
-
-Aunque no contamos con financiamiento externo, hemos estimado los costos básicos relacionados con el desarrollo del proyecto, considerando el uso de recursos personales como luz, internet y equipos de cómputo. A continuación, se detalla el presupuesto:
+Aunque no se cuenta con financiamiento externo, se estimaron los costos básicos relacionados con el desarrollo del proyecto, considerando el uso de recursos personales como luz, internet y equipos de cómputo. A continuación, se detalla el presupuesto:
 
 | Concepto                     | Costo Mensual (COP) | Proporción por Persona (COP) | Duración (meses) | Total (COP) |
 |------------------------------|---------------------|------------------------------|------------------|-------------|
@@ -60,19 +58,16 @@ Aunque no contamos con financiamiento externo, hemos estimado los costos básico
 | **Total**                    | -                  | -                            | -                | **1,000,000** |
 
 ### Detalles:
-- **Servicio de luz:** Se estima un consumo aproximado para las actividades relacionadas con el desarrollo del proyecto.
-- **Servicio de internet:** Incluye el costo de conexión a internet necesario para reuniones, investigación y uso de herramientas en línea.
-- **Uso de equipos personales:** Incluye el desgaste de hardware y el consumo eléctrico de los equipos utilizados.
-- **Reserva para emergencias:** Monto adicional para cubrir imprevistos, como reparaciones de equipos.
-
-### Notas:
-- El presupuesto puede ajustarse si se identifican costos adicionales.
+- **Servicio de luz:** Incluye el costo estimado del consumo eléctrico asociado al trabajo en el proyecto.
+- **Servicio de internet:** Cubre el acceso a internet necesario para reuniones virtuales, investigación y uso de herramientas online.
+- **Uso de equipos personales:** Considera el desgaste de hardware y el consumo eléctrico de los equipos utilizados durante el desarrollo.
+- **Reserva para emergencias:** Monto adicional para imprevistos, como la reparación de equipos o la adquisición de software adicional.
 
 ## Stakeholders
 
-- Dirección comercial de empresas deportivas interesadas en el análisis de mercado.
-- Equipos laborales que requieren herramientas de apoyo para la toma de decisiones estratégicas.
-- Usuarios finales que necesitan una herramienta automatizada para realizar análisis comparativos de productos deportivos de varias gamas y modelos.
+- Dirección comercial de una empresa deportiva.
+- Equipo laboral interno interesado en la automatización del análisis comparativo de productos deportivos.
+- Consumidores finales que podrían beneficiarse indirectamente de las recomendaciones generadas por el modelo.
 
 ## Aprobaciones
 
