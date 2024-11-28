@@ -63,10 +63,10 @@ Aunque no contamos con financiamiento externo, hemos estimado los costos básico
 - **Servicio de luz:** Se estima un consumo aproximado para las actividades relacionadas con el desarrollo del proyecto.
 - **Servicio de internet:** Incluye el costo de conexión a internet necesario para reuniones, investigación y uso de herramientas en línea.
 - **Uso de equipos personales:** Incluye el desgaste de hardware y el consumo eléctrico de los equipos utilizados.
-- **Reserva para emergencias:** Monto adicional para cubrir imprevistos, como reparaciones de equipos o la compra de licencias necesarias.
+- **Reserva para emergencias:** Monto adicional para cubrir imprevistos, como reparaciones de equipos.
 
 ### Notas:
-- El presupuesto puede ajustarse si se identifican costos adicionales o si el proyecto se extiende más allá de los dos meses planificados.
+- El presupuesto puede ajustarse si se identifican costos adicionales.
 
 ## Stakeholders
 
