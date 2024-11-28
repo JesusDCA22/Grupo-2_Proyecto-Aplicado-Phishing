@@ -16,9 +16,9 @@ Se propone el uso de embeddings teniendo en cuenta que los datos de los cuales d
 
 ### Incluye:
 
-- [Descripción de los datos disponibles]
-- [Descripción de los resultados esperados]
-- [Criterios de éxito del proyecto]
+- Se incluyen datos de Adidas, Nike y Nacion Runner, obtenidos con un scrapper, fotografía de mediados de noviembre.
+- Un data set con modelos comparados, organizados y etiquetado
+- El modelo debe ser capaz de hacer un análisis comparativo de productos de forma automática y frecuente, teniendo información actualizada de los moviemientos de mercado de las marcas analizadas
 
 ### Excluye:
 
@@ -50,9 +50,9 @@ CRISP-DM y SCRUM
 
 ## Stakeholders
 
-- [Nombre y cargo de los stakeholders del proyecto]
-- [Descripción de la relación con los stakeholders]
-- [Expectativas de los stakeholders]
+- Dirección comercial de una empresa deportiva
+- Laboral
+- Tener una herramienta que automatice el análisis comparativo de productos deportivos de varias gamas y modelos
 
 ## Aprobaciones
 
