@@ -16,13 +16,13 @@ Se propone el uso de embeddings teniendo en cuenta que los datos de los cuales d
 
 ### Incluye:
 
-- Se incluyen datos de Adidas, Nike y Nacion Runner, obtenidos con un scrapper, fotografía de mediados de noviembre.
-- Un data set con modelos comparados, organizados y etiquetado
-- El modelo debe ser capaz de hacer un análisis comparativo de productos de forma automática y frecuente, teniendo información actualizada de los moviemientos de mercado de las marcas analizadas
+- Se incluyen datos de Adidas, Nike y Nation Runner, obtenidos con un scrapper, fotografía de mediados de noviembre.
+- Un data set con modelos comparados, organizados y etiquetados
+- El modelo debe ser capaz de realizar un análisis comparativo de productos de forma automática y frecuente, teniendo información actualizada de los movimientos de mercado de las marcas analizadas
 
 ### Excluye:
 
-- [Descripción de lo que no está incluido en el proyecto]
+- N/A
 
 ## Metodología
 
@@ -46,7 +46,7 @@ CRISP-DM y SCRUM
 
 ## Presupuesto
 
-[Descripción del presupuesto asignado al proyecto]
+N/A
 
 ## Stakeholders
 
