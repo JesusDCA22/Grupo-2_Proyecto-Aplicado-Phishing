@@ -23,7 +23,7 @@ Se propone el uso de embeddings debido a que los datos disponibles consisten en 
 ### Excluye:
 
 - La comparación de productos de marcas no incluidas en el análisis inicial (por ejemplo, Puma o Reebok).
-- Desarrollo de visualizaciones avanzadas no incluidas explícitamente en el alcance.
+- El desarrollo de visualizaciones avanzadas, como gráficos interactivos o dashboards personalizados, que no estén especificados como requisitos del proyecto.
 
 ## Metodología
 
@@ -47,7 +47,26 @@ CRISP-DM y SCRUM
 
 ## Presupuesto
 
-N/A
+## Presupuesto
+
+Aunque no contamos con financiamiento externo, hemos estimado los costos básicos relacionados con el desarrollo del proyecto, considerando el uso de recursos personales como luz, internet y equipos de cómputo. A continuación, se detalla el presupuesto:
+
+| Concepto                     | Costo Mensual (COP) | Proporción por Persona (COP) | Duración (meses) | Total (COP) |
+|------------------------------|---------------------|------------------------------|------------------|-------------|
+| Servicio de luz              | 100,000            | 33,333                       | 2                | 200,000     |
+| Servicio de internet         | 150,000            | 50,000                       | 2                | 300,000     |
+| Uso de equipos personales    | 200,000            | 66,667                       | 2                | 400,000     |
+| Reserva para emergencias     | -                  | -                            | -                | 100,000     |
+| **Total**                    | -                  | -                            | -                | **1,000,000** |
+
+### Detalles:
+- **Servicio de luz:** Se estima un consumo aproximado para las actividades relacionadas con el desarrollo del proyecto.
+- **Servicio de internet:** Incluye el costo de conexión a internet necesario para reuniones, investigación y uso de herramientas en línea.
+- **Uso de equipos personales:** Incluye el desgaste de hardware y el consumo eléctrico de los equipos utilizados.
+- **Reserva para emergencias:** Monto adicional para cubrir imprevistos, como reparaciones de equipos o la compra de licencias necesarias.
+
+### Notas:
+- El presupuesto puede ajustarse si se identifican costos adicionales o si el proyecto se extiende más allá de los dos meses planificados.
 
 ## Stakeholders
 
