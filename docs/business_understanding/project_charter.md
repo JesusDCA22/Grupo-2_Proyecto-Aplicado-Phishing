@@ -53,7 +53,7 @@ Registro en GitHub: Subir el análisis de resultados y cualquier ajuste final.
 
 ## Cronograma
 
-![image](https://github.com/user-attachments/assets/cd73d811-511a-472f-b750-1988d3e153bb)
+![image](./gantt_chart.png)
 
 ## Equipo del Proyecto
 
