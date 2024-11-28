@@ -2,11 +2,15 @@
 
 ## Origen de los datos
 
-- [ ] Especificar la fuente de los datos y la forma en que se obtuvieron. 
+- https://www.adidas.co/ : se extrajeron los datos por medio de web scraping
+- https://www.nike.com.co/ : se extrajeron los datos por medio de web scraping
+- https://nacionrunner.com/ : se extrajeron los datos por medio de web scraping
+
+Todos los datos se extrajeron de diferentes páginas web, de zapatos de running, y los datos están disponibles en una api conectada a firebase.
 
 ## Especificación de los scripts para la carga de datos
 
-- [ ] Especificar los scripts utilizados para la carga de los datos. 
+- api_reader.py
 
 ## Referencias a rutas o bases de datos origen y destino
 
