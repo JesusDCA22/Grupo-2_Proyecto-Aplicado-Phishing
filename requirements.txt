@@ -6,3 +6,4 @@ pandas
 ollama
 requests
 openpyxl
+llama_models
