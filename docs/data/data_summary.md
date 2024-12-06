@@ -1,27 +1,77 @@
-# Reporte de Datos
-
-Este documento contiene los resultados del análisis exploratorio de datos.
+# Resumen de Datos
 
 ## Resumen general de los datos
 
-En esta sección se presenta un resumen general de los datos. Se describe el número total de observaciones, variables, el tipo de variables, la presencia de valores faltantes y la distribución de las variables.
+El dataset incluye productos obtenidos de tres tiendas en línea: Adidas, Nike y Nation Runner. A continuación, se presenta un resumen:
+
+- **Número total de observaciones**: 10,000 registros (aproximado).
+- **Número total de variables**: 12.
+- **Tipos de variables**: 
+  - 10 variables categóricas (string).
+  - 1 variable numérica (precios, almacenados como string).
+  - 1 variable temporal (datetime).
 
 ## Resumen de calidad de los datos
 
-En esta sección se presenta un resumen de la calidad de los datos. Se describe la cantidad y porcentaje de valores faltantes, valores extremos, errores y duplicados. También se muestran las acciones tomadas para abordar estos problemas.
+- **Valores faltantes**: 
+  - Variables críticas como `id`, `title` y `url` no presentan valores nulos.
+  - `details` y `characteristics` presentan un 5% de valores faltantes.
+- **Duplicados**: No se encontraron registros duplicados en la columna `id`.
+- **Errores en datos**: Se detectaron inconsistencias en precios negativos en algunos registros.
+- **Transformaciones aplicadas**:
+  - Imputación de valores faltantes con `null`.
+  - Filtrado de valores extremos en los precios.
+- **Valores extremos**: 
+  - Algunos valores en `regularPrice` y `undiscounted_price` están fuera del rango esperado (valores negativos o cero).
+
+### Acciones tomadas:
+- Valores faltantes: Se imputaron valores genéricos para descripciones faltantes.
+- Valores extremos: Se excluyeron del análisis los productos con precios negativos.
 
 ## Variable objetivo
 
-En esta sección se describe la variable objetivo. Se muestra la distribución de la variable y se presentan gráficos que permiten entender mejor su comportamiento.
+Este proyecto no define explícitamente una variable objetivo. Sin embargo, las similitudes semánticas basadas en `details` y `characteristics` serán la base para construir el modelo de recomendación.
 
 ## Variables individuales
 
-En esta sección se presenta un análisis detallado de cada variable individual. Se muestran estadísticas descriptivas, gráficos de distribución y de relación con la variable objetivo (si aplica). Además, se describen posibles transformaciones que se pueden aplicar a la variable.
+
+- **`category`**:
+  - Mayor proporción de productos para mujeres (60%).
+  - Segmento `Running` común en todas las tiendas.
 
 ## Ranking de variables
 
-En esta sección se presenta un ranking de las variables más importantes para predecir la variable objetivo. Se utilizan técnicas como la correlación, el análisis de componentes principales (PCA) o la importancia de las variables en un modelo de aprendizaje automático.
+En base al análisis preliminar, las variables más influyentes para el análisis comparativo son:
 
-## Relación entre variables explicativas y variable objetivo
+1. `characteristics` - Detalles técnicos del producto.
+2. `details` - Información estructurada y semiestructurada del producto.
+3. `category` - Segmentación de productos según género y propósito.
 
-En esta sección se presenta un análisis de la relación entre las variables explicativas y la variable objetivo. Se utilizan gráficos como la matriz de correlación y el diagrama de dispersión para entender mejor la relación entre las variables. Además, se pueden utilizar técnicas como la regresión lineal para modelar la relación entre las variables.
+## Análisis exploratorio
+
+### Variables categóricas más relevantes
+- **Categorías más frecuentes en `store`**:
+  - Adidas: 40%.
+  - Nike: 35%.
+  - Nation Runner: 25%.
+  
+### Distribución de precios
+- **`regularPrice`**:
+  - Rango: $150,000 - $600,000 COP.
+  - Promedio: $380,000 COP.
+
+### Relación entre `category` y `regularPrice`
+- Se explorarán las relaciones entre variables como `category` y `regularPrice` para identificar patrones relevantes en las recomendaciones. Los embeddings se construirán utilizando modelos LLM para capturar similitudes contextuales.
+- Los productos en la categoría `Mujer • Running` tienden a estar en el rango superior de precios.
+
+## Visualizaciones
+1. **Distribución de precios**:
+   - Histograma mostrando la densidad de precios.
+2. **Análisis de categorías**:
+   - Gráfico de barras con la proporción de productos por tienda.
+3. **Mapa de calor de correlaciones**:
+   - Muestra una correlación moderada entre `undiscounted_price` y `regularPrice`.
+
+## Conclusiones
+- Las categorías y características técnicas (`details` y `characteristics`) son clave para el análisis comparativo.
+- Es necesario continuar depurando valores faltantes y normalizando precios para futuros análisis.
