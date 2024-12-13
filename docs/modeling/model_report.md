@@ -35,13 +35,6 @@ Exact Match y F1 Score: Ambos son perfectos (1.000000), lo que significa que el 
 
 Precisión y Exhaustividad: También son perfectos (1.000000), indicando que el modelo encuentra todas las respuestas correctas y todas las respuestas proporcionadas son correctas.
 
-Adjuntamos las metricas de los otros modelos por referencia:
-"dccuchile/bert-base-spanish-wwm-cased"
-![image](./dccuchile.png)
-
-"deepset/xlm-roberta-large-squad2"
-![image](./Deepset-xlm.png)
-
 
 ## Conclusiones y Recomendaciones
 
@@ -55,25 +48,7 @@ Precision y Recall: son perfectos (1.000000), lo que indica que el modelo encuen
 ## Referencias
 
 Hugging Face Transformers: Transformers Documentation
-SQuAD Dataset: (Stanford Question Answering Dataset)
+SQuAD Dataset: SQuAD 2.0
+RoBERTa Model: RoBERTa: A Robustly Optimized BERT Pretraining Approach
 
-Utilizamos modelos pre-entrenados de Hugging Face:
-
-"bert-large-uncased-whole-word-masking-finetuned-squad"
-Este modelo es una versión grande de BERT (Bidirectional Encoder Representations from Transformers)
-Pertenece a: Google
-
-"dccuchile/bert-base-spanish-wwm-cased"
-
-BETO es una versión en español del modelo BERT.
-Pertenece a: DCC UChile
-
-"deepset/xlm-roberta-large-squad2"
-Este modelo es una versión grande de XLM-RoBERTa, un modelo multilingüe preentrenado en múltiples idiomas.
-Pertenece a: deepset
-
-"deepset/roberta-large-squad2"
-
-Este modelo es una versión grande de RoBERTa, afinada utilizando el conjunto de datos SQuAD 2.0. 
-Pertenece a: deepset
 
