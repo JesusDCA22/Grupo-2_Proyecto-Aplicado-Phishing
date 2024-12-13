@@ -7,3 +7,5 @@ requests
 openpyxl
 httpx
 boto3
+scikit-learn
+matplotlib
