@@ -3,7 +3,7 @@ fairscale
 fire 
 blobfile
 pandas
-ollama
 requests
 openpyxl
-llama_models
+httpx
+boto3
