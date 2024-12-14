@@ -27,17 +27,103 @@ Se propone el uso de embeddings debido a que los datos disponibles consisten en 
 
 ## Metodología
 
-Se utilizarán las metodologías CRISP-DM y SCRUM para llevar a cabo el proyecto.
+El proyecto seguirá una metodología híbrida basada en **CRISP-DM** (Cross-Industry Standard Process for Data Mining) para la estructura de las tareas técnicas y **SCRUM** para la gestión ágil del equipo y del cronograma.
 
-## Cronograma
+### Etapas según CRISP-DM:
 
-| Etapa                                    | Duración Estimada | Fechas                          |
-|-----------------------------------------|-------------------|---------------------------------|
-| Entendimiento del negocio y carga de datos | 2 semanas         | Del 13 de noviembre al 28 de noviembre |
-| Preprocesamiento y análisis exploratorio | 1 semana          | Del 29 de noviembre al 5 de diciembre |
-| Modelamiento y extracción de características | 1 semana          | Del 5 de diciembre al 12 de diciembre |
-| Despliegue                               | 1 semana          | Del 13 de diciembre al 19 de diciembre |
-| Evaluación y entrega final               | 1 semana          | Del 19 de diciembre al 21 de diciembre |
+1. **Entendimiento del Negocio**
+   - Actividades:
+     - Identificar necesidades del cliente.
+     - Determinar los objetivos del análisis comparativo.
+     - Definir métricas clave para evaluar la precisión del modelo.
+   - Cronograma: 13 de noviembre al 28 de noviembre.
+
+2. **Entendimiento de los Datos**
+   - Actividades:
+     - Recopilar datos de Adidas, Nike y Nation Runner mediante scraping.
+     - Explorar las descripciones textuales y detectar posibles inconsistencias o valores faltantes.
+     - Validar la calidad de los datos.
+   - Cronograma: 13 de noviembre al 28 de noviembre.
+
+3. **Preparación de los Datos**
+   - Actividades:
+     - Realizar limpieza y preprocesamiento de las descripciones.
+     - Convertir datos textuales en representaciones vectoriales (embeddings).
+     - Dividir los datos en conjuntos de entrenamiento, validación y prueba.
+   - Cronograma: 29 de noviembre al 5 de diciembre.
+
+4. **Modelado**
+   - Actividades:
+     - Diseñar y entrenar un modelo de recomendación basado en similitud semántica.
+     - Optimizar hiperparámetros para maximizar el rendimiento del modelo.
+   - Cronograma: 5 de diciembre al 12 de diciembre.
+
+5. **Evaluación**
+   - Actividades:
+     - Validar el modelo con métricas como precisión, recall y F1-score.
+     - Realizar pruebas con datos nuevos para garantizar generalización.
+   - Cronograma: 19 de diciembre al 21 de diciembre.
+
+6. **Despliegue**
+   - Actividades:
+     - Integrar el modelo en una herramienta funcional.
+     - Documentar su uso y entrenar al equipo en su aplicación.
+   - Cronograma: 13 de diciembre al 19 de diciembre.
+
+### Gestión ágil con SCRUM:
+
+El desarrollo del proyecto se gestionará a través de iteraciones de una semana (sprints) para garantizar la flexibilidad y la adaptabilidad frente a posibles cambios en los requisitos.
+
+#### Roles del equipo:
+
+#### **Equipo y Responsabilidades**
+
+#### **1. Juan Correa (Product Owner y Líder Técnico)**  
+- **Responsabilidades compartidas con Daniel Galvis:**  
+  - Definir y priorizar los requisitos del proyecto.  
+  - Asegurar el alineamiento con los objetivos del cliente y del negocio.  
+- **Responsabilidades compartidas con Asdrúbal Zácipa Corredor:**  
+  - Liderar las decisiones técnicas clave y supervisar el desarrollo general.  
+
+#### **2. Daniel Galvis (Scrum Master y Desarrollador)**  
+- **Responsabilidades compartidas con Juan Correa:**  
+  - Coordinar las ceremonias ágiles y facilitar la comunicación entre el equipo.  
+  - Eliminar impedimentos que afecten el progreso del proyecto.  
+- **Responsabilidades compartidas con Asdrúbal Zácipa Corredor:**  
+  - Colaborar en tareas de scraping, preprocesamiento y soporte técnico.  
+
+#### **3. Asdrúbal Zácipa Corredor (Desarrollador y Especialista en Modelado)**  
+- **Responsabilidades compartidas con Juan Correa:**  
+  - Diseñar, entrenar y evaluar el modelo de recomendación.  
+  - Implementar el modelo y contribuir al desarrollo técnico del proyecto.  
+- **Responsabilidades compartidas con Daniel Galvis:**  
+  - Asegurar la integración funcional de las soluciones desarrolladas.  
+
+---
+
+#### **Justificación de la Redistribución**  
+
+Esta reorganización tiene como objetivo mitigar el riesgo operativo en caso de que algún integrante del equipo no pueda cumplir temporalmente con sus responsabilidades debido a enfermedad, emergencia u otros compromisos. Al asignar al menos dos personas a cada tarea, se asegura que el flujo de trabajo no se interrumpa y que el conocimiento clave del proyecto esté distribuido de manera uniforme entre los integrantes.  
+
+Además, este enfoque fomenta la colaboración y la versatilidad, ya que todos los miembros se mantendrán actualizados sobre diferentes aspectos del proyecto, promoviendo una mayor resiliencia y adaptabilidad en el equipo.  
+
+
+#### Ceremonias:
+
+- **Sprint Planning:** Al inicio de cada sprint, se definirán las tareas clave y los entregables.
+- **Daily Standup:** Reuniones diarias de 15 minutos para revisar el progreso y resolver bloqueos.
+- **Sprint Review:** Al finalizar cada sprint, se presentarán los avances al equipo y se recopilará retroalimentación.
+- **Sprint Retrospective:** Se analizarán las lecciones aprendidas y se identificarán áreas de mejora para futuros sprints.
+
+## Cronograma Integrado con Sprints
+
+| Sprint                  | Etapa                                    | Actividades principales                          | Duración Estimada | Fechas                          |
+|-------------------------|-----------------------------------------|------------------------------------------------|-------------------|---------------------------------|
+| Sprint 1               | Entendimiento del negocio y carga de datos | Entendimiento del negocio y carga de datos       | 2 semanas         | Del 13 de noviembre al 28 de noviembre |
+| Sprint 2               | Preprocesamiento y análisis exploratorio | Preprocesamiento y análisis exploratorio         | 1 semana          | Del 29 de noviembre al 5 de diciembre |
+| Sprint 3               | Modelamiento y extracción de características | Modelamiento y extracción de características     | 1 semana          | Del 5 de diciembre al 12 de diciembre |
+| Sprint 4               | Despliegue                               | Despliegue del modelo                            | 1 semana          | Del 13 de diciembre al 19 de diciembre |
+| Sprint 5               | Evaluación y entrega final               | Evaluación final y entrega                       | 1 semana          | Del 19 de diciembre al 21 de diciembre |
 
 ## Equipo del Proyecto
 
@@ -58,6 +144,7 @@ Aunque no se cuenta con financiamiento externo, se estimaron los costos básicos
 | **Total**                    | -                  | -                            | -                | **1,000,000** |
 
 ### Detalles:
+
 - **Servicio de luz:** Incluye el costo estimado del consumo eléctrico asociado al trabajo en el proyecto.
 - **Servicio de internet:** Cubre el acceso a internet necesario para reuniones virtuales, investigación y uso de herramientas online.
 - **Uso de equipos personales:** Considera el desgaste de hardware y el consumo eléctrico de los equipos utilizados durante el desarrollo.
