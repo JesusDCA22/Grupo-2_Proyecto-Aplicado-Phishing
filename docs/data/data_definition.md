@@ -4,11 +4,11 @@
 
 Los datos se extrajeron mediante web scraping de las siguientes fuentes:
 
-- **Adidas**: [https://www.adidas.co/](https://www.adidas.co/)
-- **Nike**: [https://www.nike.com.co/](https://www.nike.com.co/)
-- **Nation Runner**: [https://nacionrunner.com/](https://nacionrunner.com/)
+- **Adidas**: [https://www.adidas.co/](https://www.adidas.co/)  
+- **Nike**: [https://www.nike.com.co/](https://www.nike.com.co/)  
+- **Nation Runner**: [https://nacionrunner.com/](https://nacionrunner.com/)  
 
-Posteriormente, los datos fueron almacenados en una API conectada a Firebase para su gestión y análisis posterior. Las descripciones de productos y características técnicas se estructuraron en un formato JSON para facilitar su manipulación.
+Posteriormente, los datos fueron almacenados en una API conectada a Firebase para su gestión y análisis posterior. Las descripciones de productos y características técnicas se estructuraron en un formato JSON para facilitar su manipulación. Finalmente, estos datos fueron exportados a un archivo CSV, el cual se está utilizando como fuente principal en el proyecto para simplificar su integración y análisis en los diferentes procesos.
 
 ## Especificación de los scripts para la carga de datos
 
