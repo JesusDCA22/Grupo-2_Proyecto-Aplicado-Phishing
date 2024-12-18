@@ -1,9 +1,9 @@
 import pandas as pd
-import re
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score, davies_bouldin_score
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
+from joblib import dump
 
 # ** Carga y limpieza de datos **
 ruta_excel = r"C:\\Users\\cdgn2\\OneDrive\\Escritorio\\Maestría\\Maestria\\Metodologias Agiles\\Proyecto\\Comparative-analysis-of-products\\src\\comparative_analysis\\database\\Adidas_etiquetado.xlsx"
@@ -107,3 +107,8 @@ def graficar_distribucion_clusters(df):
 
 print("\n** Distribución de Clusters **")
 graficar_distribucion_clusters(df)
+
+# Guardar el modelo KMeans y el escalador
+dump(kmeans, 'kmeans_model.joblib')
+dump(scaler, 'scaler.joblib')
+print("\nModelo KMeans y escalador guardados exitosamente.")
