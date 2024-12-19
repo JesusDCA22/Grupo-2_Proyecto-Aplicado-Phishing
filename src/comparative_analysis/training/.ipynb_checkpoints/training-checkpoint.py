@@ -3,14 +3,14 @@ import re
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score, davies_bouldin_score
 from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
 
 # ** Carga y limpieza de datos **
-#ruta_excel = r"C:\\Users\\cdgn2\\OneDrive\\Escritorio\\Maestría\\Maestria\\Metodologias Agiles\\Proyecto\\Comparative-analysis-of-products\\src\\comparative_analysis\\database\\Adidas_etiquetado.xlsx"
-ruta_excel = r"..\\..\\src\\comparative_analysis\\database\\adidas_etiquetado.xlsx"
+# Ruta del archivo de Excel
+ruta_excel = r"C:\Users\cdgn2\OneDrive\Escritorio\Maestría\Maestria\Metodologias Agiles\Proyecto\Comparative-analysis-of-products\src\comparative_analysis\database\Adidas_etiquetado.xlsx"
 
 # Crear el DataFrame
 df = pd.read_excel(ruta_excel, header=0)
-df.info()
 
 # Procesamiento de columnas numéricas
 num_cols = {
@@ -18,7 +18,6 @@ num_cols = {
     'Drop__heel-to-toe_differential_': '(\d+\.?\d*)'
 }
 for col, pattern in num_cols.items():
-    print("col",col)
     df[col] = df[col].astype(str).str.extract(pattern).astype(float, errors='ignore')
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
@@ -26,15 +25,15 @@ for col, pattern in num_cols.items():
 price_cols = ['regularPrice', 'undiscounted_price']
 for col in price_cols:
     df[col] = df[col].astype(str).str.replace(r'[^0-9.,]', '', regex=True)
-    df[col] = df[col].str.replace(r'\\.', '', regex=True).str.replace(',', '.')
+    df[col] = df[col].str.replace(r'\.', '', regex=True).str.replace(',', '.')
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
 # Eliminar columnas innecesarias
-cols_to_drop = ['details', 'description', 'category', 'characteristics', 'Width', 'Pronation_Type']
+cols_to_drop = ['details', 'description', 'category', 'characteristics', 'width', 'Pronation_Type']
 df = df.drop(columns=cols_to_drop, errors='ignore')
-df.info()
 
 # ** Clustering y evaluación **
+# Separar la columna ID
 ids = df['id']
 X = df.drop(columns=['id'], errors='ignore').fillna(0)
 
@@ -44,13 +43,29 @@ df_dummies = pd.get_dummies(X, dummy_na=True).fillna(0)
 # Escalar los datos
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(df_dummies)
-df_dummies.info()
+
+# Determinar el número óptimo de clusters usando el método del codo
+def metodo_del_codo(X, k_range):
+    distortions = []
+    for k in k_range:
+        kmeans = KMeans(n_clusters=k, random_state=42)
+        kmeans.fit(X)
+        distortions.append(kmeans.inertia_)
+    
+    plt.figure(figsize=(8, 5))
+    plt.plot(k_range, distortions, 'bx-')
+    plt.xlabel('Número de clusters k')
+    plt.ylabel('Distorsión (Inercia)')
+    plt.title('Método del Codo para determinar k')
+    plt.show()
+
+# Mostrar el método del codo
+metodo_del_codo(X_scaled, range(2, 11))
 
 # Clustering con un número específico de clusters
 k = 8
 kmeans = KMeans(n_clusters=k, random_state=42)
 clusters = kmeans.fit_predict(X_scaled)
-print("clusters",clusters)
 
 # Agregar el cluster al DataFrame original
 df['cluster'] = clusters
@@ -64,20 +79,19 @@ print(f"Davies-Bouldin Score: {db_score}")
 # ** Análisis de clusters **
 def analizar_cluster(df, cluster_num):
     elementos_cluster = df[df['cluster'] == cluster_num]
-    print(f"\n=== Análisis del cluster {cluster_num} ===")
-    print(f"Total de elementos: {len(elementos_cluster)}")
+    print(f"Elementos del cluster {cluster_num}:")
+    print(elementos_cluster.head())
 
-    print(f"\nEstadísticas descriptivas principales:")
-    print(elementos_cluster.describe().loc[['mean', 'std', 'min', 'max']])
+    print(f"\nEstadísticas descriptivas del cluster {cluster_num}:")
+    print(elementos_cluster.describe())
 
-    print(f"\nValores más frecuentes por columna categórica:")
-    cols_categoricas = elementos_cluster.select_dtypes(include=['object', 'category']).columns
-    print("cols_categoricas", cols_categoricas)
-    for col in cols_categoricas:
-        print("col",col)
-        print(f"  - {col}: {elementos_cluster[col].mode().values[0]}")
+    # Visualización de histogramas
+    columnas_relevantes = elementos_cluster.select_dtypes(include=['number']).columns
+    for col in columnas_relevantes:
+        elementos_cluster[col].plot(kind='hist', title=f"Distribución de {col} en cluster {cluster_num}")
+        plt.xlabel(col)
+        plt.ylabel('Frecuencia')
+        plt.show()
 
-# Analizar los clusters 2 y 3
-print("dataframe final df",df.info())
+# Ejemplo de análisis para un cluster específico
 analizar_cluster(df, cluster_num=2)
-analizar_cluster(df, cluster_num=3)

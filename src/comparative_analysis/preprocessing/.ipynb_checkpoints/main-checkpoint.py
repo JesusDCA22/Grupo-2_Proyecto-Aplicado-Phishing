@@ -2,7 +2,6 @@ import os
 import re
 import pandas as pd
 import numpy as np
-import spark
 from tqdm import tqdm
 
 from functions.prompt_generator import PromptGenerator
@@ -26,49 +25,8 @@ labels_with_definitions = [
 ]
 
 # Asumimos que spark está inicializado en el entorno
-#spark_df = spark.table("preprod_colombia.scraping_pp_adidas")
-# cargar dataset
-path_i = r"..\\database\\"
-#path_i = "/content/drive/MyDrive/MachineLearning_UNAL/datos/"
-file_i = path_i + "raw_data.xlsx"
-df_adidas = pd.read_excel(file_i)
-df_adidas.head()
-#df_adidas = spark_df.toPandas()
-
-def transformar_texto(texto, marca):
-    if texto is None or (isinstance(texto, float) and np.isnan(texto)):
-        return texto
-    
-    if marca.lower() == "adidas":
-        # Transformación original para adidas
-        if isinstance(texto, (list, np.ndarray)):
-            texto = ", ".join(map(str, texto))
-        else:
-            texto = str(texto)
-        texto = texto.strip("[]")
-        texto = re.sub(r",\s*", '} {', texto)
-        texto = '{' + texto + '}'
-        return texto
-    
-    elif marca.lower() == "nike":
-        # Transformación específica para nike
-        if isinstance(texto, list):
-            # Elimina claves con valores irrelevantes
-            texto_limpio = [
-                {k.strip(): v.strip() for k, v in d.items() if k.strip() not in ['\xa0']}
-                for d in texto
-                if isinstance(d, dict)
-            ]
-            # Filtra elementos vacíos o irrelevantes
-            texto_limpio = [d for d in texto_limpio if d]
-            return texto_limpio
-        return texto  # Si no es lista, regresa el texto original
-
-    else:
-        raise ValueError(f"Marca '{marca}' no reconocida. Usa 'adidas' o 'nike'.")
-        
-# Lista de descripciones de productos
-df_adidas['details_transformado'] = df_adidas['details'].apply(lambda x: transformar_texto(x, 'adidas'))
+spark_df = spark.table("preprod_colombia.scraping_pp_adidas")
+df_adidas = spark_df.toPandas()
 
 # Crear lista de productos
 productos = [
@@ -81,7 +39,7 @@ productos = [
         "category": row['category'],
         "characteristics": row['characteristics']
     }
-    for _, row in df_adidas[:2].iterrows()
+    for _, row in df_adidas.iterrows()
     if row['details_transformado'] != '{}'
 ]
 

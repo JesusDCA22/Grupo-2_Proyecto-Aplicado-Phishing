@@ -47,7 +47,7 @@ Al realizar la comparacion entre diferentes modelos obtenemos las siguientes mé
 |---------------|--------------------|-----------------------|----------------------|
 | KMeans        | 3                  | 0.3468094215555982    |   0.5095857881425025 |
 | Agglomerative | 2                  | 0.2774924967946853    |   2.795591016138718  |
-| DBScan        | 9                  | -0.19920787551009733  |  2.6226063126770205  |
+| DBScan        | 10                 | -0.19920787551009733  |  2.6226063126770205  |
 | HDBSCan       | 38                 | -0.025542353420798247 |  2.455807218880036   |
 
 Estas métricas reflejan la complejidad del conjunto de datos y la necesidad de refinar la representación de las variables o ajustar el número y el tipo de clustering usado.
