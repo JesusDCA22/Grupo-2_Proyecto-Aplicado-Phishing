@@ -1,114 +1,43 @@
 import pandas as pd
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.cluster import KMeans
-from sklearn.metrics import silhouette_score, davies_bouldin_score
-from sklearn.preprocessing import StandardScaler
-import matplotlib.pyplot as plt
-from joblib import dump
+import pickle
 
-# ** Carga y limpieza de datos **
-ruta_excel = r"C:\\Users\\cdgn2\\OneDrive\\Escritorio\\Maestría\\Maestria\\Metodologias Agiles\\Proyecto\\Comparative-analysis-of-products\\src\\comparative_analysis\\database\\Adidas_etiquetado.xlsx"
+# Cargar los datos desde el archivo Excel
+df = pd.read_excel(r"C:\\Users\\cdgn2\\OneDrive\\Escritorio\\Maestría\\Maestria\\Metodologias Agiles\\Proyecto\\Comparative-analysis-of-products\\src\\comparative_analysis\\database\\Adidas_etiquetado.xlsx")
 
-# Crear el DataFrame
-df = pd.read_excel(ruta_excel, header=0)
-
-# Procesamiento de columnas numéricas
-num_cols = {
-    'Weight': '(\d+\.?\d*)',
-    'Drop__heel-to-toe_differential_': '(\d+\.?\d*)'
-}
-for col, pattern in num_cols.items():
-    df[col] = df[col].astype(str).str.extract(pattern).astype(float, errors='ignore')
-    df[col] = pd.to_numeric(df[col], errors='coerce')
-
-# Procesar precios
-price_cols = ['regularPrice', 'undiscounted_price']
-for col in price_cols:
-    df[col] = df[col].astype(str).str.replace(r'[^0-9.,]', '', regex=True)
-    df[col] = df[col].str.replace(r'\.', '', regex=True).str.replace(',', '.')
-    df[col] = pd.to_numeric(df[col], errors='coerce')
-
-# Eliminar columnas innecesarias
-cols_to_drop = ['details', 'description', 'category', 'characteristics', 'width', 'Pronation_Type']
+# Eliminar columnas no relevantes
+cols_to_drop = ['details', 'description', 'category', 'characteristics', 'Width', 'Pronation_Type']
 df = df.drop(columns=cols_to_drop, errors='ignore')
 
-# ** Clustering y evaluación **
-ids = df['id']
-X = df.drop(columns=['id'], errors='ignore').fillna(0)
+id_column = df['id']  # Guardar la columna 'id'
+df = df.drop(columns=['id'], errors='ignore')  # Eliminar temporalmente la columna 'id'
 
-# Codificar variables categóricas
-df_dummies = pd.get_dummies(X, dummy_na=True).fillna(0)
+# Crear el OneHotEncoder
+encoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')
 
-# Escalar los datos
+# Convertir las columnas categóricas en variables dummy
+categorical_columns = df.columns  # Todas las columnas son categóricas
+df_dummies = pd.get_dummies(df, columns=categorical_columns, dummy_na=True)
+
+# Normalizar los datos
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(df_dummies)
 
-# Método del codo para determinar el número óptimo de clusters
-def metodo_del_codo(X, k_range):
-    distortions = []
-    for k in k_range:
-        kmeans = KMeans(n_clusters=k, random_state=42)
-        kmeans.fit(X)
-        distortions.append(kmeans.inertia_)
-    
-    plt.figure(figsize=(8, 5))
-    plt.plot(k_range, distortions, 'bx-')
-    plt.xlabel('Número de clusters k')
-    plt.ylabel('Distorsión (Inercia)')
-    plt.title('Método del Codo para determinar k')
-    plt.show()
+# Entrenar el modelo KMeans con el número óptimo de clusters (5)
+kmeans = KMeans(n_clusters=4, init='k-means++', random_state=42)
+kmeans.fit(X_scaled)
 
-# Mostrar el método del codo
-print("\n** Método del Codo para determinar el número óptimo de clusters **")
-metodo_del_codo(X_scaled, range(2, 11))
+# Obtener los clusters asignados
+df['cluster'] = kmeans.labels_
 
-# Clustering con un número específico de clusters
-k = 8
-kmeans = KMeans(n_clusters=k, random_state=42)
-clusters = kmeans.fit_predict(X_scaled)
+# Volver a añadir la columna 'id' con los clusters asignados
+df['id'] = id_column
 
-# Agregar el cluster al DataFrame original
-df['cluster'] = clusters
+# Guardar el encoder, scaler y modelo KMeans
+pickle.dump(encoder, open('src\\comparative_analysis\\models\\K-MeansV1\\encoder.pkl', 'wb'))
+pickle.dump(scaler, open('src\\comparative_analysis\\models\\K-MeansV1\\scaler.pkl', 'wb'))
+pickle.dump(kmeans, open('src\\comparative_analysis\\models\\K-MeansV1\\kmeans_model.pkl', 'wb'))
 
-# Evaluar calidad del clustering
-sil_score = silhouette_score(X_scaled, clusters)
-db_score = davies_bouldin_score(X_scaled, clusters)
-print(f"\n** Evaluación del clustering **")
-print(f"Silhouette Score: {sil_score}")
-print(f"Davies-Bouldin Score: {db_score}")
-
-# ** Análisis de clusters **
-def analizar_cluster(df, cluster_num):
-    elementos_cluster = df[df['cluster'] == cluster_num]
-    print(f"\n=== Análisis del cluster {cluster_num} ===")
-    print(f"Total de elementos: {len(elementos_cluster)}")
-
-    print(f"\nEstadísticas descriptivas principales:")
-    print(elementos_cluster.describe().loc[['mean', 'std', 'min', 'max']])
-
-    print(f"\nValores más frecuentes por columna categórica:")
-    cols_categoricas = elementos_cluster.select_dtypes(include=['object', 'category']).columns
-    for col in cols_categoricas:
-        print(f"  - {col}: {elementos_cluster[col].mode().values[0]}")
-
-# Analizar los clusters 2 y 3
-print("\n** Análisis de Clusters **")
-analizar_cluster(df, cluster_num=2)
-analizar_cluster(df, cluster_num=3)
-
-# Visualización de distribución de clusters
-def graficar_distribucion_clusters(df):
-    plt.figure(figsize=(8, 5))
-    df['cluster'].value_counts().sort_index().plot(kind='bar', color='skyblue', edgecolor='black')
-    plt.xlabel('Cluster')
-    plt.ylabel('Número de elementos')
-    plt.title('Distribución de elementos por cluster')
-    plt.xticks(rotation=0)
-    plt.show()
-
-print("\n** Distribución de Clusters **")
-graficar_distribucion_clusters(df)
-
-# Guardar el modelo KMeans y el escalador
-dump(kmeans, 'kmeans_model.joblib')
-dump(scaler, 'scaler.joblib')
-print("\nModelo KMeans y escalador guardados exitosamente.")
+# Si deseas guardar el dataframe con los clusters y el id:
+df.to_excel('src\\comparative_analysis\\models\\K-MeansV1\\productos_con_clusters.xlsx', index=False)
