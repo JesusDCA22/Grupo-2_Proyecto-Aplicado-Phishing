@@ -9,6 +9,7 @@ Análisis comparativo de productos de Running entre Nike, Adidas y Nation Runner
 Desarrollar una herramienta computacional que permita realizar un análisis comparativo de zapatos para running, utilizando datos obtenidos de varias tiendas retail mediante técnicas de procesamiento de lenguaje natural y preprocesamiento de datos, incluyendo el uso de Grandes Modelos de Lenguaje (LLM, por sus siglas en inglés).
 
 <img width="842" alt="image" src="https://github.com/user-attachments/assets/1f9e5304-73f1-413f-90a2-b9f82f76d357" />
+
 Img 1: Proceso del negocio manual para un análisis comparativo de productos
 
 
