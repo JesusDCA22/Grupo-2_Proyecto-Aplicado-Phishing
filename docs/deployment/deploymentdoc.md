@@ -16,6 +16,15 @@
 
 ## Documentación del despliegue
 
+![dataflow](https://github.com/user-attachments/assets/2f14053b-4d55-4ca5-8afd-05d1321add3a)
+
+Flujo de datos
+
+
+![arquitectura (1)](https://github.com/user-attachments/assets/4565491e-0dc2-4345-948c-c88167d42f16)
+
+Arquitectura
+
 - **Instrucciones de instalación:** (instrucciones detalladas para instalar el modelo en la plataforma de despliegue)
 - **Instrucciones de configuración:** (instrucciones detalladas para configurar el modelo en la plataforma de despliegue)
 - **Instrucciones de uso:** (instrucciones detalladas para utilizar el modelo en la plataforma de despliegue)
