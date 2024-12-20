@@ -18,6 +18,44 @@ Uso principal: Respuesta a preguntas en inglés2.
 Pertenece a: Google
 Referencia en Hugging Face
 
+### dccuchile/bert-base-spanish-wwm-cased
+
+BETO es una versión en español del modelo BERT, entrenado en un gran corpus en español utilizando la técnica de Whole Word Masking. Está disponible en versiones cased (sensible a mayúsculas) y uncased (no sensible a mayúsculas).
+
+Características:
+Tamaño: Similar a BERT-Base
+Vocabulario: Aproximadamente 31k subpalabras BPE construidas usando SentencePiece
+Pasos de entrenamiento: 2 millones
+Uso principal: Tareas de procesamiento de lenguaje natural en español, como clasificación de secuencias y etiquetado de entidades.
+Pertenece a: DCC UChile
+Referencia en Hugging Face
+
+### deepset/xlm-roberta-large-squad2
+
+Descripción: Este modelo es una versión grande de XLM-RoBERTa, un modelo multilingüe preentrenado en múltiples idiomas y afinado en el conjunto de datos SQuAD 2.0 para tareas de Preguntas y Respuestas extractivas.
+
+Características:
+Modelo base: xlm-roberta-large
+Idiomas: Multilingüe
+Tarea: Preguntas y Respuestas extractivas
+Datos de entrenamiento: SQuAD 2.0
+Hiperparámetros: Tamaño de lote = 32, épocas = 3, longitud máxima de secuencia = 256, tasa de aprendizaje = 1e-5.
+Pertenece a: deepset
+Referencia en Hugging Face
+
+### deepset/roberta-large-squad2
+
+Descripción: Este modelo es una versión grande de RoBERTa, afinada utilizando el conjunto de datos SQuAD 2.0. Está entrenado en pares de preguntas y respuestas, incluyendo preguntas sin respuesta.
+
+Características:
+Modelo base: roberta-large
+Idioma: inglés
+Tarea: Preguntas y Respuestas extractivas
+Datos de entrenamiento: SQuAD 2.0
+Hiperparámetros: Tamaño de lote = 32, épocas = 3, longitud máxima de secuencia = 256, tasa de aprendizaje = 1e-5.
+Pertenece a: deepset
+Referencia en Hugging Face
+
 
 ## Variables de entrada
 
@@ -38,32 +76,55 @@ Se utilizaron las siguientes métricas de evaluación:
 
 - Exact Match (EM): Mide el porcentaje de respuestas que coinciden exactamente con la respuesta correcta. Evalúa la precisión de un modelo de Preguntas y Respuestas. Comúnmente utilizada en modelos de Preguntas y Respuestas extractivas.
 
-- F1 Score: Combina la precisión y la exhaustividad en una sola puntuación. Proporciona una medida equilibrada del rendimiento del modelo, especialmente útil cuando hay un desequilibrio entre clases. Utilizada en clasificación binaria y multiclase, 
-así como en modelos de Preguntas y Respuestas.
+- F1 Score: Combina la precisión y la exhaustividad en una sola puntuación. Proporciona una medida equilibrada del rendimiento del modelo, especialmente útil cuando hay un desequilibrio entre clases. Utilizada en clasificación binaria y multiclase, así como en modelos de Preguntas y Respuestas.
 
 - Precision (Precisión): Mide el porcentaje de respuestas correctas entre todas las respuestas proporcionadas por el modelo. Evalúa la exactitud de las predicciones del modelo. Utilizada en clasificación binaria y multiclase, así como en modelos de Preguntas y Respuestas.
 
 - Recall (Exhaustividad): Mide el porcentaje de respuestas correctas entre todas las respuestas posibles. Evalúa la capacidad del modelo para encontrar todas las respuestas correctas. Utilizada en clasificación binaria y multiclase, así como en modelos de Preguntas y Respuestas.
 
 ### Resultados de evaluación
-
+bert-large-uncased-whole-word-masking-finetuned-squad
 ![image](./Baseline_metrics.png)
+dccuchile/bert-base-spanish-wwm-cased
+![image](./dccuchile.png)
+deepset/xlm-roberta-large-squad2
+![image](./deepset-xlm.png)
+deepset/roberta-large-squad2
+![image](./deepset-xlm.png)
 
 ## Análisis de los resultados
 
-El Validation Loss se mantiene constante en 6.051758 durante las tres épocas. Esto indica que el modelo no mejora su rendimiento en el conjunto de validación, lo que puede deberse a varias razones:
-Problemas en los hiperparámetros (p. ej., tasa de aprendizaje).
-Insuficiencia en la cantidad de datos de entrenamiento.
-El modelo no está aprendiendo adecuadamente de los datos.
+El modelo "deepset/roberta-large-squad2" tiene una pérdida de validación más baja (0.785217) en comparación con "deepset/xlm-roberta-large-squad2" (1.975281), lo que indica que se ajusta mejor a los datos de validación.
 
-Exact Match, F1 Score, Precision y Recall:
-Todas estas métricas están en 0.0000 para las tres épocas. Esto significa que el modelo no está realizando predicciones correctas, ni siquiera parcialmente.
-Estas métricas sugieren que el modelo no está captando relaciones útiles entre las características y las etiquetas.
+Exact Match y F1 Score: "deepset/roberta-large-squad2" tiene una puntuación perfecta en Exact Match y F1 Score (1.000000), lo que significa que proporciona respuestas precisas y equilibradas.
 
-## Conclusiones
+Precision y Recall: Ambos son perfectos (1.000000) para "deepset/roberta-large-squad2", lo que indica que el modelo encuentra todas las respuestas correctas y todas las respuestas proporcionadas son correctas.
 
-- El modelo no está aprendiendo de los datos proporcionados, como lo demuestran el Validation Loss constante y las métricas de rendimiento (Exact Match, F1, Precision, Recall) en 0.
-- Es necesario revisar los datos de entrada, las etiquetas, los hiperparámetros y la configuración del entrenamiento para identificar y corregir las posibles causas del bajo rendimiento.
-- Considerar registrar el Training Loss para monitorear el aprendizaje durante el entrenamiento.
+En resumen, "deepset/roberta-large-squad2" parece ser el mejor modelo en términos de rendimiento basado en las métricas proporcionadas. 
+
+## Referencias
+
+Hugging Face Transformers: Transformers Documentation
+SQuAD Dataset: (Stanford Question Answering Dataset)
+
+Utilizamos modelos pre-entrenados de Hugging Face:
+
+"bert-large-uncased-whole-word-masking-finetuned-squad"
+Este modelo es una versión grande de BERT (Bidirectional Encoder Representations from Transformers)
+Pertenece a: Google
+
+"dccuchile/bert-base-spanish-wwm-cased"
+
+BETO es una versión en español del modelo BERT.
+Pertenece a: DCC UChile
+
+"deepset/xlm-roberta-large-squad2"
+Este modelo es una versión grande de XLM-RoBERTa, un modelo multilingüe preentrenado en múltiples idiomas.
+Pertenece a: deepset
+
+"deepset/roberta-large-squad2"
+
+Este modelo es una versión grande de RoBERTa, afinada utilizando el conjunto de datos SQuAD 2.0. 
+Pertenece a: deepset
 
 
