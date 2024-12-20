@@ -5,10 +5,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-
 import numpy as np
 import pandas as pd
-import tensorflow as tf
 import keras
 
 # Crear la instancia de Flask
