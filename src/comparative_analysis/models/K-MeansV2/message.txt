@@ -1,37 +1,26 @@
-import pandas as pd
+```python
+from flask import Flask, request, jsonify
 import numpy as np
+import pandas as pd
 import tensorflow as tf
 from tensorflow import keras
-from sklearn.model_selection import StratifiedKFold
+
+app = Flask(__name__)
+
+# Asume que has cargado tu modelo previamente (fuera del endpoint)
+model = keras.models.load_model("mi_modelo_final")  # Ajusta la ruta a tu modelo
+
+# Cargar el preprocessor que se usó en el entrenamiento
+# Esto depende de cómo lo hayas serializado. Si no lo has guardado, deberás reconstruirlo igual que en el entrenamiento.
+# Aquí se asume que lo tienes disponible en el entorno:
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.metrics import classification_report, confusion_matrix
-from pandas.api.types import CategoricalDtype
-
-print("TensorFlow version:", tf.__version__)
-
-# Cargar datos
-df = pd.read_excel("src\\comparative_analysis\\models\\RedNeuronal\\productos_con_clusters.xlsx")
-
-# Ajustar nombres de columnas según disponibilidad real en el DataFrame.
-# Ejemplo si la columna se llama "Drop heel-to-toe differential":
+# Ajusta las columnas según tu caso real:
 numerical_cols = ['Drop heel-to-toe differential', 'Weight', 'regularPrice','undiscounted_price','percentil_discounted']
 categorical_cols = ['Midsole_Material', 'Cushioning_System', 'Outsole', 'Upper_Material', 
                     'Additional_Technologies', 'Gender']
-
-target_col = 'Cluster'
-df = df.dropna(subset=[target_col])
-
-X = df[numerical_cols + categorical_cols]
-y = df[target_col]
-
-# Convertir a categoría si no lo es ya
-if not isinstance(y.dtype, CategoricalDtype):
-    y = y.astype('category')
-
-num_classes = len(y.cat.categories)
 
 numeric_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='median')),
@@ -40,8 +29,6 @@ numeric_transformer = Pipeline(steps=[
 
 categorical_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='most_frequent')),
-    # Para versiones de scikit-learn >= 1.2, usar 'sparse_output=False'
-    # Si tienes una versión más antigua, usa 'sparse=False' si está disponible o retira el argumento
     ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=False))
 ])
 
@@ -52,60 +39,30 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+# Asumimos que dispones de las categorías originales tal como se entrenaron
+# Por ejemplo:
+categories = ['Cluster0', 'Cluster1', 'Cluster2']  # Ajusta según tus categorías reales
 
-all_reports = []
-all_conf_matrices = []
+@app.route('/classify', methods=['POST'])
+def classify():
+    # Se espera un JSON con las llaves que coincidan con las columnas esperadas
+    data = request.get_json()
+    # Crear DataFrame con el nuevo elemento
+    # Asumimos que 'data' es un dict con las columnas correctas
+    nuevo_elemento = pd.DataFrame([data])  # Convierte el dict a DF con una fila
+    
+    # Preprocesar
+    X_new_processed = preprocessor.transform(nuevo_elemento)
+    
+    # Predecir
+    y_pred_proba = model.predict(X_new_processed)
+    y_pred_class = np.argmax(y_pred_proba, axis=1)
+    predicted_cluster = categories[y_pred_class[0]]
 
-for fold, (train_index, test_index) in enumerate(skf.split(X, y)):
-    X_train, X_val = X.iloc[train_index], X.iloc[test_index]
-    y_train, y_val = y.iloc[train_index], y.iloc[test_index]
-    
-    X_train_processed = preprocessor.fit_transform(X_train)
-    X_val_processed = preprocessor.transform(X_val)
-    
-    y_train_cat = keras.utils.to_categorical(y_train.cat.codes, num_classes=num_classes)
-    y_val_cat = keras.utils.to_categorical(y_val.cat.codes, num_classes=num_classes)
-    
-    model = keras.Sequential([
-        keras.layers.Input(shape=(X_train_processed.shape[1],)),
-        keras.layers.Dense(64, activation='relu', kernel_regularizer=keras.regularizers.l2(0.001)),
-        keras.layers.Dropout(0.3),
-        keras.layers.Dense(32, activation='relu', kernel_regularizer=keras.regularizers.l2(0.001)),
-        keras.layers.Dropout(0.3),
-        keras.layers.Dense(num_classes, activation='softmax')
-    ])
-    
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    
-    early_stopping = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
-    
-    history = model.fit(
-        X_train_processed, y_train_cat,
-        validation_data=(X_val_processed, y_val_cat),
-        epochs=100,
-        batch_size=16,
-        callbacks=[early_stopping],
-        verbose=0
-    )
-    
-    val_loss, val_acc = model.evaluate(X_val_processed, y_val_cat, verbose=0)
-    print(f"Fold {fold+1}: Accuracy = {val_acc:.4f}")
-    
-    y_pred_proba = model.predict(X_val_processed)
-    y_pred = np.argmax(y_pred_proba, axis=1)
-    y_true = y_val.cat.codes
+    # Retornar la predicción en formato JSON
+    return jsonify({'prediction': predicted_cluster})
 
-    report = classification_report(y_true, y_pred, target_names=y_val.cat.categories.tolist())
-    conf_mat = confusion_matrix(y_true, y_pred)
-    
-    all_reports.append(report)
-    all_conf_matrices.append(conf_mat)
+if __name__ == '__main__':
+    app.run(debug=True)
 
-print("\n=== Resultados de cada fold ===")
-for i, rep in enumerate(all_reports):
-    print(f"Fold {i+1} report:")
-    print(rep)
-    print("Matriz de confusión:")
-    print(all_conf_matrices[i])
-    print("-"*50)
+```

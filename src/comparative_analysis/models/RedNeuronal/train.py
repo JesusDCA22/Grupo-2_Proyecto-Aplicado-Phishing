@@ -25,7 +25,11 @@ target_col = 'Cluster'
 df = df.dropna(subset=[target_col])
 
 X = df[numerical_cols + categorical_cols]
+print("-_-_-_-_-_")
+X.info()
 y = df[target_col]
+print("-_-_-_-_-_")
+y.info()
 
 # Convertir a categoría si no lo es ya
 if not isinstance(y.dtype, CategoricalDtype):
@@ -61,12 +65,19 @@ for fold, (train_index, test_index) in enumerate(skf.split(X, y)):
     X_train, X_val = X.iloc[train_index], X.iloc[test_index]
     y_train, y_val = y.iloc[train_index], y.iloc[test_index]
     
+    print("pre_______________________________________________________________")
+    print(X_train)
+
     X_train_processed = preprocessor.fit_transform(X_train)
     X_val_processed = preprocessor.transform(X_val)
     
     y_train_cat = keras.utils.to_categorical(y_train.cat.codes, num_classes=num_classes)
     y_val_cat = keras.utils.to_categorical(y_val.cat.codes, num_classes=num_classes)
     
+    print("_______________________________________________________________")
+    print(X_train_processed)
+    print(X_train_processed.shape)
+
     model = keras.Sequential([
         keras.layers.Input(shape=(X_train_processed.shape[1],)),
         keras.layers.Dense(64, activation='relu', kernel_regularizer=keras.regularizers.l2(0.001)),
@@ -75,6 +86,8 @@ for fold, (train_index, test_index) in enumerate(skf.split(X, y)):
         keras.layers.Dropout(0.3),
         keras.layers.Dense(num_classes, activation='softmax')
     ])
+
+    print(model.summary())
     
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     
@@ -103,7 +116,7 @@ for fold, (train_index, test_index) in enumerate(skf.split(X, y)):
     print("---------y_val.shape---------")
     print(y_val.shape)
 
-    report = classification_report(y_true, y_pred, target_names=y_val.cat.categories.tolist())
+    report = classification_report(y_true, y_pred)
     conf_mat = confusion_matrix(y_true, y_pred)
     
     all_reports.append(report)
@@ -116,3 +129,9 @@ for i, rep in enumerate(all_reports):
     print("Matriz de confusión:")
     print(all_conf_matrices[i])
     print("-"*50)
+
+
+model.save("src\comparative_analysis\models\RedNeuronal\modelo_entrenado.keras")
+
+print("-_-_-_-_-_")
+X.info()
