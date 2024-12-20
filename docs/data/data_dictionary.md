@@ -1,38 +1,23 @@
 # Diccionario de datos
 
-## Base de datos 1
+## Estructura del dataset
 
-**Agregar una descripción de la tabla o fuente de datos.
+| Variable          | Descripción                                                                 | Tipo de dato | Rango/Valores posibles      | Valor de ejemplo                               |
+|--------------------|-----------------------------------------------------------------------------|--------------|-----------------------------|-----------------------------------------------|
+| `id`              | Identificador único del producto                                           | string       | Único por producto          | `046zSiHm8Cz0fZYwMJlL`                        |
+| `details`         | Detalles técnicos del producto                                             | string       | -                           | `{Horma clásica} {Parte superior sintética}`  |
+| `store`           | Nombre de la tienda que vende el producto                                  | string       | adidas, nike, nacionrunner  | `adidas`                                      |
+| `manufacturer`    | Marca o empresa que fabrica el producto                                    | string       | adidas, nike, otros         | `adidas`                                      |
+| `url`             | URL del producto en la tienda                                              | string       | -                           | `https://www.adidas.co/...`                   |
+| `title`           | Nombre o título del producto                                               | string       | -                           | `Tenis Duramo SL`                            |
+| `regularPrice`    | Precio sin descuento                                                       | string       | Valores numéricos en COP    | `$379.950`                                   |
+| `undiscounted_price` | Precio con descuento aplicado                                           | string       | Valores numéricos en COP    | `$265.965`                                   |
+| `description`     | Descripción general del producto                                           | string       | -                           | `"Los Adizero Adios Pro 3 son la ..."`        |
+| `category`        | Categoría asignada al producto por la tienda                               | string       | Hombre, Mujer, Running      | `Mujer • Running`                            |
+| `createdAt`       | Fecha y hora de creación del registro                                      | datetime     | ISO 8601                    | `2023-12-05T10:30:00Z`                       |
+| `characteristics` | Características adicionales, como materiales o tecnologías utilizadas      | string       | -                           | `Parte superior de malla diseñada...`        |
+| `gender`          | Género objetivo del producto                                               | string       | Hombre, Mujer, Unisex       | `Mujer`                                      |
 
-| Variable | Descripción | Tipo de dato | Rango/Valores posibles | Fuente de datos |
-| --- | --- | --- | --- | --- |
-| variable_1 | Descripción de la variable 1 | Tipo de dato | Rango/Valores posibles | Fuente de datos |
-| variable_2 | Descripción de la variable 2 | Tipo de dato | Rango/Valores posibles | Fuente de datos |
-| variable_3 | Descripción de la variable 3 | Tipo de dato | Rango/Valores posibles | Fuente de datos |
-| variable_4 | Descripción de la variable 4 | Tipo de dato | Rango/Valores posibles | Fuente de datos |
-| variable_5 | Descripción de la variable 5 | Tipo de dato | Rango/Valores posibles | Fuente de datos |
+## Fuente de los datos
 
-- **Variable**: nombre de la variable.
-- **Descripción**: breve descripción de la variable.
-- **Tipo de dato**: tipo de dato que contiene la variable.
-- **Rango/Valores posibles**: rango o valores que puede tomar la variable.
-- **Fuente de datos**: fuente de los datos de la variable.
-
-## Base de datos 2
-
-**Agregar una descripción de la tabla o fuente de datos.
-
-| Variable | Descripción | Tipo de dato | Rango/Valores posibles | Fuente de datos |
-| --- | --- | --- | --- | --- |
-| variable_1 | Descripción de la variable 1 | Tipo de dato | Rango/Valores posibles | Fuente de datos |
-| variable_2 | Descripción de la variable 2 | Tipo de dato | Rango/Valores posibles | Fuente de datos |
-| variable_3 | Descripción de la variable 3 | Tipo de dato | Rango/Valores posibles | Fuente de datos |
-| variable_4 | Descripción de la variable 4 | Tipo de dato | Rango/Valores posibles | Fuente de datos |
-| variable_5 | Descripción de la variable 5 | Tipo de dato | Rango/Valores posibles | Fuente de datos |
-
-- **Variable**: nombre de la variable.
-- **Descripción**: breve descripción de la variable.
-- **Tipo de dato**: tipo de dato que contiene la variable.
-- **Rango/Valores posibles**: rango o valores que puede tomar la variable.
-- **Fuente de datos**: fuente de los datos de la variable.
-
+Los datos están disponibles mediante una API conectada a Firebase. Cada registro se consulta y almacena de forma estructurada en un DataFrame para análisis posterior.

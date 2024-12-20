@@ -1,0 +1,9 @@
+torch
+fairscale 
+fire 
+blobfile
+pandas
+requests
+openpyxl
+httpx
+boto3
