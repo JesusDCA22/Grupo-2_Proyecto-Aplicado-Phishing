@@ -195,20 +195,16 @@ Para configurar el modelo en la plataforma de despliegue:
        ```
      - Respuesta esperada (200):
        ```json
-      {
-          "id": "09skdjf20sldkj32sd",
-          "category": "Mujer • Running",
-          "description": "Producto similar al Adizero Adios Pro 3...",
-          ...
-      },
-      ...
-      {
-          "id": "09adsfkdjfasdfdkasdfassd",
-          "category": "Hombre • Running",
-          "description": "Producto similar al Adizero Adios Pro 3...",
-          ...
-      }
-       
+        {
+            "id": "09skdjf20sldkj32sd",
+            "category": "Mujer • Running",
+            "description": "Producto similar al Adizero Adios Pro 3...",
+        },
+        {
+            "id": "09adsfkdjfasdfdkasdfassd",
+            "category": "Hombre • Running",
+            "description": "Producto similar al Adizero Adios Pro 3..."
+        }
        ```
      - Errores posibles:
        - 400: Si no se proporciona el Cluster del producto.
