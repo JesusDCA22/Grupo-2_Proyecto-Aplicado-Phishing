@@ -1,13 +1,9 @@
 from flask import Flask, jsonify, request
-from apiRest.get import test, get_product_by_id
-from apiRest.post import get_products_by_parameters, predictKMeansV1
-from sklearn.pipeline import Pipeline
-from sklearn.compose import ColumnTransformer
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-import numpy as np
+from apiRest.get import test, get_product_by_id, get_products_by_cluster
+from apiRest.post import get_products_by_parameters
 import pandas as pd
 import keras
+import joblib
 
 # Crear la instancia de Flask
 app = Flask(__name__)
@@ -15,58 +11,34 @@ app = Flask(__name__)
 # Registrar las rutas GET
 app.add_url_rule('/api/test', view_func=test, methods=['GET'])
 app.add_url_rule('/api/product', view_func=get_product_by_id, methods=['GET'])
+app.add_url_rule('/api/similarProducts', view_func=get_products_by_cluster, methods=['GET'])
 
 # Registrar las rutas POST
 app.add_url_rule('/api/products', view_func=get_products_by_parameters, methods=['POST'])
-app.add_url_rule('/predict/KMeansV1', view_func=predictKMeansV1, methods=['POST'])
 
 model = keras.saving.load_model(".\src\comparative_analysis\models\RedNeuronal\modelo_entrenado.keras")
+# Cargar el preprocessor
+preprocessor = joblib.load(".\src\comparative_analysis\models\RedNeuronal\preprocessor.pkl")  
 
-# Ajusta las columnas según tu caso real:
 numerical_cols = ['Drop__heel-to-toe_differential_', 'Weight', 'regularPrice','undiscounted_price','percentil_discounted']
 categorical_cols = ['Midsole_Material', 'Cushioning_System', 'Outsole', 'Upper_Material', 
                     'Additional_Technologies', 'Gender']
 
-numeric_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='median')),
-    ('scaler', StandardScaler())
-])
 
-categorical_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='most_frequent')),
-    ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=False))
-])
-
-preprocessor = ColumnTransformer(
-    transformers=[
-        ('num', numeric_transformer, numerical_cols),
-        ('cat', categorical_transformer, categorical_cols)
-    ]
-)
-
-
-categories = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
-
-@app.route('/classify', methods=['POST'])
-def classify():
-    # Se espera un JSON con las llaves que coincidan con las columnas esperadas
+@app.route('/predict', methods=['POST'])
+def predict():
+    # Recibir datos en formato JSON
     data = request.get_json()
-    # Crear DataFrame con el nuevo elemento
-    # Asumimos que 'data' es un dict con las columnas correctas
-    nuevo_elemento = pd.DataFrame([data])  # Convierte el dict a DF con una fila
+    df_new = pd.DataFrame([data])
     
-    # Preprocesar
-    #preprocessor.fit_transform(nuevo_elemento)
-    X_new_processed = preprocessor.fit_transform(nuevo_elemento)
+    # Procesar los datos usando el preprocessor cargado
+    X_new_processed = preprocessor.transform(df_new)
     
+    # Hacer predicción con el modelo
+    predictions_proba = model.predict(X_new_processed)
+    predictions = predictions_proba.argmax(axis=1)  # Obtener la clase con mayor probabilidad
     
-    # Predecir
-    y_pred_proba = model.predict(X_new_processed)
-    y_pred_class = np.argmax(y_pred_proba, axis=1)
-    predicted_cluster = categories[y_pred_class[0]]
-
-    # Retornar la predicción en formato JSON
-    return jsonify({'prediction': predicted_cluster})
+    return jsonify({'prediction': int(predictions[0])})
 
 
 # Ejecutar la aplicación

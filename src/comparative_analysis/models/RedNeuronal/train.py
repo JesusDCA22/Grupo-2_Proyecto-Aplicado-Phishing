@@ -9,6 +9,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import classification_report, confusion_matrix
 from pandas.api.types import CategoricalDtype
+import joblib
 
 print("TensorFlow version:", tf.__version__)
 
@@ -132,6 +133,8 @@ for i, rep in enumerate(all_reports):
 
 
 model.save("src\comparative_analysis\models\RedNeuronal\modelo_entrenado.keras")
+# Guardar el preprocessor
+joblib.dump(preprocessor, "src/comparative_analysis/models/RedNeuronal/preprocessor.pkl")
 
 print("-_-_-_-_-_")
 X.info()
