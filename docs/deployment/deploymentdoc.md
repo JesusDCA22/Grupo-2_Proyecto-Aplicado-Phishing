@@ -185,35 +185,38 @@ Para configurar el modelo en la plataforma de despliegue:
      - Errores posibles:
        - 400: Si no se envían datos para la predicción.
        - 500: Si ocurre un error interno.
-   - **Endpoints disponibles:**
-
    - **GET /api/similarProducts**
-     - **Descripción:** Permite obtener productos similares a un producto específico basado en su ID.
-     - **Parámetros:**
-       - `id` (obligatorio): ID del producto para el cual se buscarán productos similares.
-     - **Ejemplo de solicitud:**
+     - Descripción: Permite obtener un diccionario de productos pertenecientes a un mismo Cluster.
+     - Parámetros:
+       - `Cluster` (obligatorio): Cluster del producto para el cual se buscarán productos similares.
+     - Ejemplo de solicitud:
        ```
-       GET http://127.0.0.1:2626/api/similarProducts?id=08sjncACSjSvg2t9DS73
+       GET http://127.0.0.1:2626/api/similarProducts?cluster=9
        ```
-     - **Respuesta esperada (200):**
+     - Respuesta esperada (200):
        ```json
-       [
-           {
-               "id": "09skdjf20sldkj32sd",
-               "category": "Mujer • Running",
-               "description": "Producto similar al Adizero Adios Pro 3...",
-               ...
-           },
-           ...
-       ]
+      {
+          "id": "09skdjf20sldkj32sd",
+          "category": "Mujer • Running",
+          "description": "Producto similar al Adizero Adios Pro 3...",
+          ...
+      },
+      ...
+      {
+          "id": "09adsfkdjfasdfdkasdfassd",
+          "category": "Hombre • Running",
+          "description": "Producto similar al Adizero Adios Pro 3...",
+          ...
+      }
+       
        ```
-     - **Errores posibles:**
-       - 400: Si no se proporciona el ID del producto.
-       - 404: Si no se encuentran productos similares.
+     - Errores posibles:
+       - 400: Si no se proporciona el Cluster del producto.
+       - 404: Si no se encuentran productos.
 
    - **POST /predict**
-     - **Descripción:** Realiza una predicción basada en características proporcionadas y devuelve productos relacionados.
-     - **Cuerpo de la solicitud:**
+     - Descripción: Realiza una predicción basada en características proporcionadas y asigna un numero de cluster al nuevo producto.
+     - Cuerpo de la solicitud:
        ```json
        {
            "key1": "value1",
@@ -221,7 +224,7 @@ Para configurar el modelo en la plataforma de despliegue:
            ...
        }
        ```
-     - **Ejemplo de solicitud:**
+     - Ejemplo de solicitud:
        ```
        POST http://127.0.0.1:2626/predict
        {
@@ -230,18 +233,13 @@ Para configurar el modelo en la plataforma de despliegue:
            ...
        }
        ```
-     - **Respuesta esperada (200):**
-       ```json
-       [
-           {
-               "id": "08sjncACSjSvg2t9DS73",
-               "category": "Mujer • Running",
-               ...
-           },
-           ...
-       ]
-       ```
-     - **Errores posibles:**
+     - Respuesta esperada (200):
+      ```json
+      {
+        "prediction": 9
+      }
+      ```
+     - Errores posibles:
        - 400: Si no se proporcionan datos para la predicción.
        - 500: Si ocurre un error interno.
 
