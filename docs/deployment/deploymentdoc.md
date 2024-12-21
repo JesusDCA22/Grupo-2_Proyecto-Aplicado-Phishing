@@ -230,11 +230,11 @@ Para configurar el modelo en la plataforma de despliegue:
        }
        ```
      - Respuesta esperada (200):
-        ```json
-        {
-          "prediction": 9
-        }
-        ```
+       ```json
+       {
+         "prediction": 9
+       }
+       ```
      - Errores posibles:
        - 400: Si no se proporcionan datos para la predicción.
        - 500: Si ocurre un error interno.
