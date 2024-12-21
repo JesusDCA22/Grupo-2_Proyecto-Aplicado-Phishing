@@ -185,6 +185,66 @@ Para configurar el modelo en la plataforma de despliegue:
      - Errores posibles:
        - 400: Si no se envían datos para la predicción.
        - 500: Si ocurre un error interno.
+   - **Endpoints disponibles:**
+
+   - **GET /api/similarProducts**
+     - **Descripción:** Permite obtener productos similares a un producto específico basado en su ID.
+     - **Parámetros:**
+       - `id` (obligatorio): ID del producto para el cual se buscarán productos similares.
+     - **Ejemplo de solicitud:**
+       ```
+       GET http://127.0.0.1:2626/api/similarProducts?id=08sjncACSjSvg2t9DS73
+       ```
+     - **Respuesta esperada (200):**
+       ```json
+       [
+           {
+               "id": "09skdjf20sldkj32sd",
+               "category": "Mujer • Running",
+               "description": "Producto similar al Adizero Adios Pro 3...",
+               ...
+           },
+           ...
+       ]
+       ```
+     - **Errores posibles:**
+       - 400: Si no se proporciona el ID del producto.
+       - 404: Si no se encuentran productos similares.
+
+   - **POST /predict**
+     - **Descripción:** Realiza una predicción basada en características proporcionadas y devuelve productos relacionados.
+     - **Cuerpo de la solicitud:**
+       ```json
+       {
+           "key1": "value1",
+           "key2": "value2",
+           ...
+       }
+       ```
+     - **Ejemplo de solicitud:**
+       ```
+       POST http://127.0.0.1:2626/predict
+       {
+           "category": "Mujer • Running",
+           "Cushioning_System": "Lightstrike Pro",
+           ...
+       }
+       ```
+     - **Respuesta esperada (200):**
+       ```json
+       [
+           {
+               "id": "08sjncACSjSvg2t9DS73",
+               "category": "Mujer • Running",
+               ...
+           },
+           ...
+       ]
+       ```
+     - **Errores posibles:**
+       - 400: Si no se proporcionan datos para la predicción.
+       - 500: Si ocurre un error interno.
+
 
 2. **Notas técnicas:**
    - La API utiliza pandas para manipular datos en formato Excel y pickle para cargar los modelos entrenados.
