@@ -25,7 +25,7 @@ Posteriormente, los datos fueron almacenados en una API conectada a Firebase par
 - **Estructura de los datos de origen**:
   - Base de datos no relacional con documentos organizados por producto y tienda.
   - Formato JSON, donde cada registro corresponde a un producto, con campos específicos como `id`, `details`, `category`, entre otros.
-  -   - Cada documento contiene las variables descritas en el diccionario de datos.
+  - Cada documento contiene las variables descritas en el diccionario de datos.
 - **Procedimientos de transformación y limpieza**: 
   - Conversión de datos monetarios a un formato uniforme.
   - Limpieza de caracteres especiales y espacios redundantes en los campos de texto. (usando expresiones regulares).
