@@ -12,8 +12,6 @@ Desarrollar una herramienta computacional que permita realizar un análisis comp
 
 Img 1: Proceso del negocio manual para un análisis comparativo de productos
 
-
-
 ## Alcance del Proyecto
 
 El alcance del proyecto consiste en construir un modelo de recomendación basado en embeddings, capaz de generar recomendaciones basadas en la similitud de atributos de calzado deportivo para running, alineados con las necesidades del cliente.
