@@ -4,14 +4,15 @@
 
 - **Nombre del modelo:** (nombre que se le ha dado al modelo)
 - **Plataforma de despliegue:** Railway
-- **Requisitos técnicos:** [Requirements.txt](/scripts/training/requirements.txt)
+- **Requisitos técnicos:** [Requirements.txt](/mlapi/requirements.txt)
 - **Requisitos de seguridad:** 
-- **Diagrama de arquitectura:** 
+- **Diagrama de arquitectura:** [image](/docs/deployment/railway.png)
 
 ## Código de despliegue
 
-- **Archivo principal:** Chatbot_V4
-- **Rutas de acceso a los archivos:** [Link para archivo Chatbot_V3.ipyn donde se despliega el modelo](/scripts/training/Chatbot_V3.ipynb)
+- **Archivo principal:** El archivo main.py es el archivo principal del deployment del modelo, por su parte existe el archivo de requriments.txt tiene los requsitos para instalación.
+- **Rutas de acceso a los archivos:** [Requiriments](/mlapi/requirements.txt)
+[Main](/mlapi/main.py)
 
 ## Documentación del despliegue
 
