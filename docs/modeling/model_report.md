@@ -79,3 +79,4 @@ A nivel descriptivo, se logró observar patrones de materiales y tecnologías pr
 * Evaluación de Clustering (Silhouette y Davies-Bouldin): [https://scikit-learn.org/stable/modules/clustering.html#clustering-evaluation](https://scikit-learn.org/stable/modules/clustering.html#clustering-evaluation)
 * Documentación de K-Means: [https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
 * Técnicas de reducción de dimensionalidad: [https://scikit-learn.org/stable/modules/decomposition.html](https://scikit-learn.org/stable/modules/decomposition.html)
+  
