@@ -52,7 +52,7 @@ En base al análisis preliminar, las variables más influyentes para el análisi
   - Nike: 30%.  
   - Nation Runner: 11%.  
 
-
+![Distribución de "Store"](scripts\eda\edaImages\storeDistribution.png)
 
 ### Relación entre `category` y `regularPrice`
 - Se explorarán las relaciones entre variables como `category` y `regularPrice` para identificar patrones relevantes en las recomendaciones. Los embeddings se construirán utilizando modelos LLM para capturar similitudes contextuales.  
