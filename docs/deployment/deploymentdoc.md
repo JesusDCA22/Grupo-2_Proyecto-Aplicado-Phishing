@@ -87,7 +87,7 @@ Para configurar el modelo en la plataforma de despliegue:
      - Descripción: Este endpoint es una prueba básica para verificar el funcionamiento del servidor.
      - Respuesta esperada (200):
 
-       ```
+       ```json
        {
            "message": "¡Hola! Esta es una respuesta GET de prueba.",
            "status": "success"
@@ -100,13 +100,13 @@ Para configurar el modelo en la plataforma de despliegue:
        - `id` (obligatorio): ID del producto a buscar.
      - Ejemplo de solicitud:
 
-       ```
+       ```res
        GET http://127.0.0.1:2626/api/product?id=08sjncACSjSvg2t9DS73
        ```
 
      - Respuesta esperada (200):
 
-       ```
+       ```json
        {
            "Additional_Technologies": "ENERGYRODS 2.0, Waterproofing, Recyclable material",
            "Available_Sizes": NaN,
@@ -136,7 +136,7 @@ Para configurar el modelo en la plataforma de despliegue:
      - Descripción: Busca productos que coincidan con los parámetros proporcionados.
      - Cuerpo de la solicitud:
 
-       ```
+       ```json
        {
            "key1": "value1",
            "key2": "value2",
@@ -146,7 +146,7 @@ Para configurar el modelo en la plataforma de despliegue:
 
      - Ejemplo de solicitud:
 
-       ```
+       ```res
        POST http://127.0.0.1:2626/api/products
        {
            "category": "Mujer • Running",
@@ -156,7 +156,7 @@ Para configurar el modelo en la plataforma de despliegue:
 
      - Respuesta esperada (200):
 
-       ```
+       ```json
        [
            {
                "id": "08sjncACSjSvg2t9DS73",
@@ -175,7 +175,7 @@ Para configurar el modelo en la plataforma de despliegue:
      - Descripción: Realiza una predicción utilizando un modelo K-Means para asignar un producto a un cluster y devuelve productos similares en el mismo cluster.
      - Cuerpo de la solicitud:
 
-       ```
+       ```json
        {
            "key1": "value1",
            "key2": "value2",
@@ -185,7 +185,7 @@ Para configurar el modelo en la plataforma de despliegue:
 
      - Ejemplo de solicitud:
 
-       ```
+       ```res
        POST http://127.0.0.1:2626/predict/KMeansV1
        {
            "category": "Mujer • Running",
@@ -196,7 +196,7 @@ Para configurar el modelo en la plataforma de despliegue:
 
      - Respuesta esperada (200):
 
-       ```
+       ```json
        [
            {
                "id": "08sjncACSjSvg2t9DS73",
@@ -216,7 +216,7 @@ Para configurar el modelo en la plataforma de despliegue:
        - `Cluster` (obligatorio): Cluster del producto para el cual se buscarán productos similares.
      - Ejemplo de solicitud:
 
-       ```
+       ```res
        GET http://127.0.0.1:2626/api/similarProducts?cluster=9
        ```
 
@@ -253,7 +253,7 @@ Para configurar el modelo en la plataforma de despliegue:
 
      - Ejemplo de solicitud:
 
-       ```
+       ```res
        POST http://127.0.0.1:2626/predict
        {
            "category": "Mujer • Running",
@@ -290,7 +290,7 @@ Para configurar el modelo en la plataforma de despliegue:
 4. **Cómo iniciar la aplicación:**
    Ejecuta el archivo `main.py`:
 
-   ```
+   ```bash
    python main.py
    ```
 

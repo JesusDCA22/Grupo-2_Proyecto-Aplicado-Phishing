@@ -12,6 +12,10 @@ El modelo baseline se enfocó en realizar un proceso de clustering sobre un conj
 
 Este pipeline busca identificar patrones, similitudes y diferencias entre los productos de la marca.
 
+Además de los modelos de clustering utilizados para agrupar los productos de Adidas, se realizó un entrenamiento de red neuronal con el objetivo de asignar los productos de **Decathlon** a los clusters previamente establecidos. Para ello, se utilizó el modelo de **k-means** al final del proceso, con la finalidad de poder comparar ambos conjuntos de productos.
+
+Es importante aclarar que esta modificación fue necesaria porque, al aplicar el modelo de k-means original (que agrupa los productos de Adidas), los productos de Decathlon terminaban agrupándose todos en un mismo cluster debido a diferencias en la forma de los productos y otros factores. Esto no resultaba útil para encontrar productos similares entre Decathlon y su competencia, Adidas. Por esta razón, se entrenó una **red neuronal**, la cual, en las pruebas realizadas, logró distribuir mejor los productos de Decathlon en los clusters ya definidos para Adidas.
+
 ## Variables de entrada
 
 Las variables de entrada utilizadas en el modelo son aquellas extraídas y normalizadas a partir del procesamiento con el LLM. Entre las principales variables se encuentran:

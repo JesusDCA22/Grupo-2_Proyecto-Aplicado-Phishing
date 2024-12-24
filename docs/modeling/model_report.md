@@ -13,6 +13,8 @@ Con el fin de realizar la comparación de diferentes modelos de clustering, se u
 * **DBScan**
 * **HDBScan**
 
+Además, se entrenó una red neuronal con el objetivo de asignar los productos de Decathlon a los clusters previamente establecidos para Adidas. El modelo de k-means se utilizó al final del proceso, con la finalidad de poder comparar ambos conjuntos de productos. Esta modificación fue necesaria debido a que, al aplicar el modelo de k-means original (que agrupa los productos de Adidas), los productos de Decathlon tendían a agruparse todos en un mismo cluster debido a diferencias en la forma de los productos y otros factores. Esto no resultaba útil para encontrar productos similares entre Decathlon y su competencia, Adidas. Por esta razón, se entrenó una red neuronal, que en las pruebas realizadas logró distribuir mejor los productos de Decathlon en los clusters ya definidos para Adidas.
+
 ## Descripción del Problema
 
 La problemática abordada consiste en organizar y segmentar una amplia gama de productos Adidas en grupos homogéneos, con el fin de facilitar análisis comparativos. El objetivo es identificar patrones ocultos en las características de los productos, tales como peso, materiales, precios y tecnologías implementadas. Este tipo de segmentación es útil para la toma de decisiones estratégicas, el análisis de competitividad y el desarrollo de nuevas líneas de productos orientadas a grupos específicos de mercado.
@@ -29,12 +31,16 @@ El modelo final se basa en el siguiente flujo de trabajo:
 4. **Clustering (K-Means)**: Se aplicó K-Means con un determinado número de clusters, seleccionado tras un análisis inicial con el método del codo. La elección final de k se basó en la interpretación de las métricas y la naturaleza de los datos.
 
 El resultado fue un conjunto de clusters, cada uno agrupando productos con ciertas características predominantes. Por ejemplo:
+
 * El **Cluster 2** (22 elementos) presentó productos con un peso promedio de alrededor de 569 g, un drop cercano a 9.4 mm, y precios promedio de ~401.7. Las tecnologías más comunes fueron "Mediasuela Bounce" y "Suela de caucho", con mayoría de productos para "Mujer" y "Running".
 * El **Cluster 3** (60 elementos) mostró productos más ligeros (259.9 g) con drop de ~9.65 mm y precios promedio cercanos a 474. En este cluster destacó el material "Parte superior de malla" y el sistema "Dreamstrike+", mayormente orientado a calzado de "Mujer" y "Running".
+
+Además, se implementó un entrenamiento de red neuronal para asignar los productos de Decathlon a los clusters previamente establecidos para los productos de Adidas. La red neuronal ayudó a mejorar la distribución de los productos de Decathlon en los clusters, superando las limitaciones iniciales del modelo de k-means, el cual agrupaba erróneamente todos los productos de Decathlon en un solo cluster.
 
 ## Evaluación del Modelo
 
 **Métricas:**
+
 * **Silhouette Score:** -0.10726032825390042  
   Un valor negativo sugiere que la mayoría de los puntos podrían asignarse mejor a otros clusters, indicando una baja cohesión/separación.
   
@@ -57,18 +63,22 @@ A nivel descriptivo, se logró observar patrones de materiales y tecnologías pr
 ## Conclusiones y Recomendaciones
 
 **Fortalezas:**
+
 * Se estableció un proceso reproducible para extraer, normalizar y clústerizar datos de productos.
 * Se identificaron patrones básicos en la composición de algunos clusters.
 
 **Debilidades:**
+
 * Métricas bajas de calidad de clusters indican que la segmentación no es nítida.
 * Alta heterogeneidad en las características, posibles variables irrelevantes o ruido dificultan la formación de grupos cohesivos.
 
 **Limitaciones:**
+
 * El modelo depende en gran medida de la calidad de las etiquetas generadas por el LLM.
 * No se exploraron otros algoritmos de clustering ni se realizaron exhaustivos ajustes de hiperparámetros.
 
 **Áreas de mejora:**
+
 * Refinar la selección de características y la representación de datos, por ejemplo, utilizando embeddings semánticos para descripciones textuales.
 * Probar técnicas de reducción de dimensionalidad (PCA, UMAP) para mejorar la separabilidad de los datos.
 * Experimentar con algoritmos de clustering alternativos (DBSCAN, HDBSCAN) que podrían adaptarse mejor a la forma real de los datos.
@@ -79,4 +89,3 @@ A nivel descriptivo, se logró observar patrones de materiales y tecnologías pr
 * Evaluación de Clustering (Silhouette y Davies-Bouldin): [https://scikit-learn.org/stable/modules/clustering.html#clustering-evaluation](https://scikit-learn.org/stable/modules/clustering.html#clustering-evaluation)
 * Documentación de K-Means: [https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
 * Técnicas de reducción de dimensionalidad: [https://scikit-learn.org/stable/modules/decomposition.html](https://scikit-learn.org/stable/modules/decomposition.html)
-  
