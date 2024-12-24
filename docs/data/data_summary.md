@@ -18,7 +18,8 @@ El dataset incluye productos obtenidos de tres tiendas en línea: Adidas, Nike y
   - `gender`, `category`, `undiscounted_price` y `characteristics` presentan un porcentaje alto de valores faltantes y no hay mas columnas con valores faltantes.  
 - **Duplicados**: No se encontraron registros duplicados.  
 
-### Acciones tomadas:
+### Acciones tomadas
+
 - **Valores faltantes**: Se planea imputar valores genéricos como "unisex" para descripciones faltantes en columnas como "genero" pero se necesita hacer una revision exahustiva para decidir esto.  
 
 ## Variable objetivo
@@ -47,20 +48,32 @@ En base al análisis preliminar, las variables más influyentes para el análisi
 ## Análisis exploratorio
 
 ### Variables categóricas más relevantes
+
 - **Categorías más frecuentes en `store`**:  
   - Adidas: 59%.  
   - Nike: 30%.  
   - Nation Runner: 11%.  
 
-![Distribución de "Store"](../../scripts/eda/edaImages/storeDistribution.png)
+![Distribución de "store"](../../scripts/eda/edaImages/storeDistribution.png)
+
+- **Categorías más frecuentes en `manufacturer`**:  
+
+![Distribución de "manufacturer"](../../scripts\eda\edaImages\manufacturerDistribution.png)
+
+- **Categorías más frecuentes en `gender`**:  
+
+![Distribución de "gender"](../../scripts\eda\edaImages\genderDistribution.png)
 
 ### Relación entre `category` y `regularPrice`
+
 - Se explorarán las relaciones entre variables como `category` y `regularPrice` para identificar patrones relevantes en las recomendaciones. Los embeddings se construirán utilizando modelos LLM para capturar similitudes contextuales.  
 
 ## Visualizaciones
+
 1. **Análisis de categorías**:  
    - Gráficos de barras con la proporción de distintas características de los datos.  
 
 ## Conclusiones
+
 - Las categorías y características técnicas (`details` y `characteristics`) son clave para el análisis comparativo.  
 - Es necesario normalizar distintos valores, como los precios, para futuros análisis.  
