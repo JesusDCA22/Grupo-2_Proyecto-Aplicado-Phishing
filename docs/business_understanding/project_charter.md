@@ -18,13 +18,13 @@ El alcance del proyecto consiste en construir un modelo de recomendación basado
 
 Se propone el uso de embeddings debido a que los datos disponibles consisten en descripciones textuales de las características de diferentes tipos de calzado deportivo. Se busca aplicar técnicas de embeddings utilizando modelos LLM, con el objetivo de mejorar la precisión semántica basada en similitud contextual.
 
-### Incluye:
+### Incluye
 
 - Datos de Adidas, Nike y Nation Runner, obtenidos mediante un scraper con corte de datos a mediados de noviembre.
 - Un dataset organizado y etiquetado con modelos comparados.
 - Un modelo que permita realizar análisis comparativos de productos de forma automática y frecuente, con información actualizada sobre los movimientos de mercado de las marcas analizadas.
 
-### Excluye:
+### Excluye
 
 - La comparación de productos de marcas no incluidas en el análisis inicial (por ejemplo, Puma o Reebok).
 - El desarrollo de visualizaciones avanzadas, como gráficos interactivos o dashboards personalizados, que no estén especificados como requisitos del proyecto.
@@ -33,7 +33,7 @@ Se propone el uso de embeddings debido a que los datos disponibles consisten en 
 
 El proyecto seguirá una metodología híbrida basada en **CRISP-DM** (Cross-Industry Standard Process for Data Mining) para la estructura de las tareas técnicas y **SCRUM** para la gestión ágil del equipo y del cronograma.
 
-### Etapas según CRISP-DM:
+### Etapas según CRISP-DM
 
 1. **Entendimiento del Negocio**
    - Actividades:
@@ -74,15 +74,16 @@ El proyecto seguirá una metodología híbrida basada en **CRISP-DM** (Cross-Ind
      - Documentar su uso y entrenar al equipo en su aplicación.
    - Cronograma: 13 de diciembre al 19 de diciembre.
 
-### Gestión ágil con SCRUM:
+### Gestión ágil con SCRUM
 
 El desarrollo del proyecto se gestionará a través de iteraciones de una semana (sprints) para garantizar la flexibilidad y la adaptabilidad frente a posibles cambios en los requisitos.
 
-#### Roles del equipo:
+#### Roles del equipo
 
 #### **Equipo y Responsabilidades**
 
 #### **1. Juan Correa (Product Owner y Líder Técnico)**  
+
 - **Responsabilidades compartidas con Daniel Galvis:**  
   - Definir y priorizar los requisitos del proyecto.  
   - Asegurar el alineamiento con los objetivos del cliente y del negocio.  
@@ -90,6 +91,7 @@ El desarrollo del proyecto se gestionará a través de iteraciones de una semana
   - Liderar las decisiones técnicas clave y supervisar el desarrollo general.  
 
 #### **2. Daniel Galvis (Scrum Master y Desarrollador)**  
+
 - **Responsabilidades compartidas con Juan Correa:**  
   - Coordinar las ceremonias ágiles y facilitar la comunicación entre el equipo.  
   - Eliminar impedimentos que afecten el progreso del proyecto.  
@@ -97,6 +99,7 @@ El desarrollo del proyecto se gestionará a través de iteraciones de una semana
   - Colaborar en tareas de scraping, preprocesamiento y soporte técnico.  
 
 #### **3. Asdrúbal Zácipa Corredor (Desarrollador y Especialista en Modelado)**  
+
 - **Responsabilidades compartidas con Juan Correa:**  
   - Diseñar, entrenar y evaluar el modelo de recomendación.  
   - Implementar el modelo y contribuir al desarrollo técnico del proyecto.  
@@ -111,8 +114,7 @@ Esta reorganización tiene como objetivo mitigar el riesgo operativo en caso de 
 
 Además, este enfoque fomenta la colaboración y la versatilidad, ya que todos los miembros se mantendrán actualizados sobre diferentes aspectos del proyecto, promoviendo una mayor resiliencia y adaptabilidad en el equipo.  
 
-
-#### Ceremonias:
+#### Ceremonias
 
 - **Sprint Planning:** Al inicio de cada sprint, se definirán las tareas clave y los entregables.
 - **Daily Standup:** Reuniones diarias de 15 minutos para revisar el progreso y resolver bloqueos.
@@ -131,9 +133,9 @@ Además, este enfoque fomenta la colaboración y la versatilidad, ya que todos l
 
 ## Equipo del Proyecto
 
-- Daniel Galvis CC 1010038257 cgalvisn@unal.edu.co
-- Juan Correa CC 1013653882 jumcorrealo@unal.edu.co
-- Asdrúbal Zácipa Corredor CC 79139929 azacipac@unal.edu.co
+- Daniel Galvis CC 1010038257 <cgalvisn@unal.edu.co>
+- Juan Correa CC 1013653882 <jumcorrealo@unal.edu.co>
+- Asdrúbal Zácipa Corredor CC 79139929 <azacipac@unal.edu.co>
 
 ## Presupuesto
 
@@ -147,7 +149,7 @@ Aunque no se cuenta con financiamiento externo, se estimaron los costos básicos
 | Reserva para emergencias     | -                  | -                            | -                | 100,000     |
 | **Total**                    | -                  | -                            | -                | **1,000,000** |
 
-### Detalles:
+### Detalles
 
 - **Servicio de luz:** Incluye el costo estimado del consumo eléctrico asociado al trabajo en el proyecto.
 - **Servicio de internet:** Cubre el acceso a internet necesario para reuniones virtuales, investigación y uso de herramientas online.

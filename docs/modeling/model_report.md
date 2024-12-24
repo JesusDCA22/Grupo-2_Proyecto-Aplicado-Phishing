@@ -2,7 +2,7 @@
 
 ## Resumen Ejecutivo
 
-El modelo final se construyó con el objetivo de agrupar productos de Adidas con características similares, partiendo de datos obtenidos desde un endpoint, luego normalizados y etiquetados mediante un LLM. Para lograr esto, se aplicó un método de clustering (K-Means) a las variables numéricas y categóricas transformadas. 
+El modelo final se construyó con el objetivo de agrupar productos de Adidas con características similares, partiendo de datos obtenidos desde un endpoint, luego normalizados y etiquetados mediante un LLM. Para lograr esto, se aplicó un método de clustering (K-Means) a las variables numéricas y categóricas transformadas.
 
 En términos de métricas de evaluación, el **Silhouette Score** alcanzó un valor de **-0.10726032825390042**, mientras que el **Davies-Bouldin Score** fue de **3.7837546892816856**. Estas métricas indican que el clustering no logró una segmentación claramente separada ni cohesiva. Sin embargo, estos resultados proporcionan una línea base para mejoras futuras.
 
@@ -29,16 +29,16 @@ El modelo final se basa en el siguiente flujo de trabajo:
 4. **Clustering (K-Means)**: Se aplicó K-Means con un determinado número de clusters, seleccionado tras un análisis inicial con el método del codo. La elección final de k se basó en la interpretación de las métricas y la naturaleza de los datos.
 
 El resultado fue un conjunto de clusters, cada uno agrupando productos con ciertas características predominantes. Por ejemplo:
-- El **Cluster 2** (22 elementos) presentó productos con un peso promedio de alrededor de 569 g, un drop cercano a 9.4 mm, y precios promedio de ~401.7. Las tecnologías más comunes fueron "Mediasuela Bounce" y "Suela de caucho", con mayoría de productos para "Mujer" y "Running".
-- El **Cluster 3** (60 elementos) mostró productos más ligeros (259.9 g) con drop de ~9.65 mm y precios promedio cercanos a 474. En este cluster destacó el material "Parte superior de malla" y el sistema "Dreamstrike+", mayormente orientado a calzado de "Mujer" y "Running".
+* El **Cluster 2** (22 elementos) presentó productos con un peso promedio de alrededor de 569 g, un drop cercano a 9.4 mm, y precios promedio de ~401.7. Las tecnologías más comunes fueron "Mediasuela Bounce" y "Suela de caucho", con mayoría de productos para "Mujer" y "Running".
+* El **Cluster 3** (60 elementos) mostró productos más ligeros (259.9 g) con drop de ~9.65 mm y precios promedio cercanos a 474. En este cluster destacó el material "Parte superior de malla" y el sistema "Dreamstrike+", mayormente orientado a calzado de "Mujer" y "Running".
 
 ## Evaluación del Modelo
 
 **Métricas:**
-- **Silhouette Score:** -0.10726032825390042  
+* **Silhouette Score:** -0.10726032825390042  
   Un valor negativo sugiere que la mayoría de los puntos podrían asignarse mejor a otros clusters, indicando una baja cohesión/separación.
   
-- **Davies-Bouldin Score:** 3.7837546892816856  
+* **Davies-Bouldin Score:** 3.7837546892816856  
   Un valor relativamente alto indica que los clusters no están bien separados ni son internamente cohesivos.
 
 Al realizar la comparacion entre diferentes modelos obtenemos las siguientes métricas:
@@ -57,25 +57,25 @@ A nivel descriptivo, se logró observar patrones de materiales y tecnologías pr
 ## Conclusiones y Recomendaciones
 
 **Fortalezas:**
-- Se estableció un proceso reproducible para extraer, normalizar y clústerizar datos de productos.
-- Se identificaron patrones básicos en la composición de algunos clusters.
+* Se estableció un proceso reproducible para extraer, normalizar y clústerizar datos de productos.
+* Se identificaron patrones básicos en la composición de algunos clusters.
 
 **Debilidades:**
-- Métricas bajas de calidad de clusters indican que la segmentación no es nítida.
-- Alta heterogeneidad en las características, posibles variables irrelevantes o ruido dificultan la formación de grupos cohesivos.
+* Métricas bajas de calidad de clusters indican que la segmentación no es nítida.
+* Alta heterogeneidad en las características, posibles variables irrelevantes o ruido dificultan la formación de grupos cohesivos.
 
 **Limitaciones:**
-- El modelo depende en gran medida de la calidad de las etiquetas generadas por el LLM.
-- No se exploraron otros algoritmos de clustering ni se realizaron exhaustivos ajustes de hiperparámetros.
+* El modelo depende en gran medida de la calidad de las etiquetas generadas por el LLM.
+* No se exploraron otros algoritmos de clustering ni se realizaron exhaustivos ajustes de hiperparámetros.
 
 **Áreas de mejora:**
-- Refinar la selección de características y la representación de datos, por ejemplo, utilizando embeddings semánticos para descripciones textuales.
-- Probar técnicas de reducción de dimensionalidad (PCA, UMAP) para mejorar la separabilidad de los datos.
-- Experimentar con algoritmos de clustering alternativos (DBSCAN, HDBSCAN) que podrían adaptarse mejor a la forma real de los datos.
+* Refinar la selección de características y la representación de datos, por ejemplo, utilizando embeddings semánticos para descripciones textuales.
+* Probar técnicas de reducción de dimensionalidad (PCA, UMAP) para mejorar la separabilidad de los datos.
+* Experimentar con algoritmos de clustering alternativos (DBSCAN, HDBSCAN) que podrían adaptarse mejor a la forma real de los datos.
 
 ## Referencias
 
-- Scikit-learn Documentation: [https://scikit-learn.org/stable/](https://scikit-learn.org/stable/)
-- Evaluación de Clustering (Silhouette y Davies-Bouldin): [https://scikit-learn.org/stable/modules/clustering.html#clustering-evaluation](https://scikit-learn.org/stable/modules/clustering.html#clustering-evaluation)
-- Documentación de K-Means: [https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
-- Técnicas de reducción de dimensionalidad: [https://scikit-learn.org/stable/modules/decomposition.html](https://scikit-learn.org/stable/modules/decomposition.html)  
+* Scikit-learn Documentation: [https://scikit-learn.org/stable/](https://scikit-learn.org/stable/)
+* Evaluación de Clustering (Silhouette y Davies-Bouldin): [https://scikit-learn.org/stable/modules/clustering.html#clustering-evaluation](https://scikit-learn.org/stable/modules/clustering.html#clustering-evaluation)
+* Documentación de K-Means: [https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
+* Técnicas de reducción de dimensionalidad: [https://scikit-learn.org/stable/modules/decomposition.html](https://scikit-learn.org/stable/modules/decomposition.html)

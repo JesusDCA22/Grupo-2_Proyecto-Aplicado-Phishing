@@ -89,8 +89,6 @@ El modelo baseline de clustering no ofrece una segmentación claramente útil, s
 
 ## Referencias
 
-
 - Documentation of scikit-learn for Clustering: [https://scikit-learn.org/stable/modules/clustering.html](https://scikit-learn.org/stable/modules/clustering.html)
 - Introducción a la Evaluación del Clustering (Silhouette Score, Davies-Bouldin): [https://scikit-learn.org/stable/modules/clustering.html#clustering-evaluation](https://scikit-learn.org/stable/modules/clustering.html#clustering-evaluation)
 - Documentación de K-Means: [https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
-

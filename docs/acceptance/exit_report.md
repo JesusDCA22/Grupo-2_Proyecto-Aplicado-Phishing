@@ -10,9 +10,7 @@ Este informe describe los resultados del proyecto de machine learning y presenta
 - Evaluación del modelo final y comparación con el modelo base.
 - Descripción de los resultados y su relevancia para el negocio.
 
-
 ![nuevoProceso (1)](https://github.com/user-attachments/assets/558ff02f-750a-4898-ac6c-9682f701cce0)
-
 
 ## Lecciones aprendidas
 

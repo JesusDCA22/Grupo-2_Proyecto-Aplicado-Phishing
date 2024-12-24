@@ -4,7 +4,7 @@
 
 - **Nombre del modelo:** Clasificador de productos
 - **Plataforma de despliegue:** AWS
-- **Requisitos técnicos:** 
+- **Requisitos técnicos:**
 Librerías: torch, fairscale, fire, blobfile, pandas, requests, openpyxl, httpx, boto3, scikit-learn, matplotlib, flask (requirements.txt)
 LLMs: AWS Bedrock o Llama 3.1, modelo de 70B de parámetros
 Databricks: Ambiente conectado a Glue Storage
@@ -19,13 +19,12 @@ Arquitectura
 ## Código de despliegue
 
 - **Archivo principal:** src/main.py
-- **Rutas de acceso a los archivos:** https://scraping-firestore-178159629911.us-central1.run.app//v1/scraping/
+- **Rutas de acceso a los archivos:** <https://scraping-firestore-178159629911.us-central1.run.app//v1/scraping/>
 - **Variables de entorno:**
 
 En el despliegue en databricks se solicita:
 ACCESS_TOKEN: Token de acceso generado por databricks
 USERNAME: Usuario corporativo
-
 
 ## Documentación del despliegue
 
@@ -35,28 +34,37 @@ USERNAME: Usuario corporativo
 Flujo de datos
 
 ### **Instrucciones de instalación**
+
 Para iniciar un ambiente virtual e instalar las dependencias necesarias para la aplicación, sigue los siguientes pasos:
 
 1. Asegúrate de tener Python 3.7 o superior instalado.
 2. Crea un ambiente virtual:
+
    ```bash
    python -m venv venv
    ```
+
 3. Activa el ambiente virtual:
    - En Windows:
+
      ```bash
      venv\Scripts\activate
      ```
+
    - En macOS/Linux:
+
      ```bash
      source venv/bin/activate
      ```
+
 4. Instala las dependencias listadas en el archivo `requirements.txt`:
+
    ```bash
    pip install -r requirements.txt
    ```
 
 ### **Instrucciones de configuración**
+
 Para configurar el modelo en la plataforma de despliegue:
 
 1. Asegúrate de que los modelos entrenados estén ubicados en:
@@ -78,6 +86,7 @@ Para configurar el modelo en la plataforma de despliegue:
    - **GET /api/test**
      - Descripción: Este endpoint es una prueba básica para verificar el funcionamiento del servidor.
      - Respuesta esperada (200):
+
        ```
        {
            "message": "¡Hola! Esta es una respuesta GET de prueba.",
@@ -90,10 +99,13 @@ Para configurar el modelo en la plataforma de despliegue:
      - Parámetros:
        - `id` (obligatorio): ID del producto a buscar.
      - Ejemplo de solicitud:
+
        ```
        GET http://127.0.0.1:2626/api/product?id=08sjncACSjSvg2t9DS73
        ```
+
      - Respuesta esperada (200):
+
        ```
        {
            "Additional_Technologies": "ENERGYRODS 2.0, Waterproofing, Recyclable material",
@@ -115,6 +127,7 @@ Para configurar el modelo en la plataforma de despliegue:
            ...
        }
        ```
+
      - Errores posibles:
        - 400: Si no se proporciona el ID del producto.
        - 404: Si el producto no se encuentra.
@@ -122,6 +135,7 @@ Para configurar el modelo en la plataforma de despliegue:
    - **POST /api/products**
      - Descripción: Busca productos que coincidan con los parámetros proporcionados.
      - Cuerpo de la solicitud:
+
        ```
        {
            "key1": "value1",
@@ -129,7 +143,9 @@ Para configurar el modelo en la plataforma de despliegue:
            ...
        }
        ```
+
      - Ejemplo de solicitud:
+
        ```
        POST http://127.0.0.1:2626/api/products
        {
@@ -137,7 +153,9 @@ Para configurar el modelo en la plataforma de despliegue:
            "Cushioning_System": "Lightstrike Pro"
        }
        ```
+
      - Respuesta esperada (200):
+
        ```
        [
            {
@@ -148,6 +166,7 @@ Para configurar el modelo en la plataforma de despliegue:
            ...
        ]
        ```
+
      - Errores posibles:
        - 400: Si no se proporcionan parámetros.
        - 404: Si no se encuentran productos que coincidan con los parámetros.
@@ -155,6 +174,7 @@ Para configurar el modelo en la plataforma de despliegue:
    - **POST /predict/KMeansV1**
      - Descripción: Realiza una predicción utilizando un modelo K-Means para asignar un producto a un cluster y devuelve productos similares en el mismo cluster.
      - Cuerpo de la solicitud:
+
        ```
        {
            "key1": "value1",
@@ -162,7 +182,9 @@ Para configurar el modelo en la plataforma de despliegue:
            ...
        }
        ```
+
      - Ejemplo de solicitud:
+
        ```
        POST http://127.0.0.1:2626/predict/KMeansV1
        {
@@ -171,7 +193,9 @@ Para configurar el modelo en la plataforma de despliegue:
            ...
        }
        ```
+
      - Respuesta esperada (200):
+
        ```
        [
            {
@@ -182,6 +206,7 @@ Para configurar el modelo en la plataforma de despliegue:
            ...
        ]
        ```
+
      - Errores posibles:
        - 400: Si no se envían datos para la predicción.
        - 500: Si ocurre un error interno.
@@ -190,10 +215,13 @@ Para configurar el modelo en la plataforma de despliegue:
      - Parámetros:
        - `Cluster` (obligatorio): Cluster del producto para el cual se buscarán productos similares.
      - Ejemplo de solicitud:
+
        ```
        GET http://127.0.0.1:2626/api/similarProducts?cluster=9
        ```
+
      - Respuesta esperada (200):
+
        ```json
         {
             "id": "09skdjf20sldkj32sd",
@@ -206,6 +234,7 @@ Para configurar el modelo en la plataforma de despliegue:
             "description": "Producto similar al Adizero Adios Pro 3..."
         }
        ```
+
      - Errores posibles:
        - 400: Si no se proporciona el Cluster del producto.
        - 404: Si no se encuentran productos.
@@ -213,6 +242,7 @@ Para configurar el modelo en la plataforma de despliegue:
    - **POST /predict**
      - Descripción: Realiza una predicción basada en características proporcionadas y asigna un numero de cluster al nuevo producto.
      - Cuerpo de la solicitud:
+
        ```json
        {
            "key1": "value1",
@@ -220,7 +250,9 @@ Para configurar el modelo en la plataforma de despliegue:
            ...
        }
        ```
+
      - Ejemplo de solicitud:
+
        ```
        POST http://127.0.0.1:2626/predict
        {
@@ -229,16 +261,18 @@ Para configurar el modelo en la plataforma de despliegue:
            ...
        }
        ```
+
      - Respuesta esperada (200):
+
        ```json
        {
          "prediction": 9
        }
        ```
+
      - Errores posibles:
        - 400: Si no se proporcionan datos para la predicción.
        - 500: Si ocurre un error interno.
-
 
 2. **Notas técnicas:**
    - La API utiliza pandas para manipular datos en formato Excel y pickle para cargar los modelos entrenados.
@@ -255,11 +289,13 @@ Para configurar el modelo en la plataforma de despliegue:
 
 4. **Cómo iniciar la aplicación:**
    Ejecuta el archivo `main.py`:
+
    ```
    python main.py
    ```
 
 ### **Instrucciones de mantenimiento**
+
 1. **Actualización del modelo:**
    - Sustituye los archivos del modelo en la ruta `src\comparative_analysis\models\K-MeansV1\` con las versiones actualizadas.
    - Reinicia el servidor para cargar los nuevos modelos.
@@ -275,4 +311,3 @@ Para configurar el modelo en la plataforma de despliegue:
 4. **Resolución de errores:**
    - Consulta los mensajes de error en el log para diagnosticar problemas.
    - Realiza pruebas con los endpoints usando herramientas como Postman o cURL para verificar su correcto funcionamiento.
-
