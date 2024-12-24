@@ -78,7 +78,6 @@ En base al análisis preliminar, las variables más influyentes para el análisi
 - Las categorías y características técnicas (`details` y `characteristics`) son clave para el análisis comparativo.  
 - Es necesario normalizar distintos valores, como los precios, para futuros análisis.  
 
-
-[def]: ../../scripts\eda\edaImages\manufacturerDistribution.png
-[def2]: ../../scripts\eda\edaImages\genderDistribution.png
+[def]: ../../scripts/eda/edaImages/manufacturerDistribution.png
+[def2]: ../../scripts]/eda/edaImages/genderDistribution.png
 [def3]: ../../scripts/eda/edaImages/storeDistribution.png
