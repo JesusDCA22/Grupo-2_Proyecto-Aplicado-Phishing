@@ -2,17 +2,18 @@
 
 ## Infraestructura
 
-- **Nombre del modelo:** (nombre que se le ha dado al modelo)
-- **Plataforma de despliegue:** Railway
-- **Requisitos técnicos:** [Requirements.txt](/mlapi/requirements.txt)
+- **Nombre del modelo:** Modelo pregunta y respuesta
+- **Plataforma de despliegue:** Railway y FastAPI
+- **Requisitos técnicos:** [Requirements.txt](/scripts/training/requirements.txt)
 - **Requisitos de seguridad:** 
-- **Diagrama de arquitectura:** [image](/docs/deployment/railway.png)
+- **Diagrama de arquitectura:** [image](/mlapi/railway.png)
 
 ## Código de despliegue
 
-- **Archivo principal:** El archivo main.py es el archivo principal del deployment del modelo, por su parte existe el archivo de requriments.txt tiene los requsitos para instalación.
-- **Rutas de acceso a los archivos:** [Requiriments](/mlapi/requirements.txt)
-[Main](/mlapi/main.py)
+- **Archivo principal:** Requirements y main.py, el proceso se encuentra en Chatbot_V3-2.
+- **Rutas de acceso a los archivos:** [Requirements](/mlapi/requirements.txt)
+[main](/mlapi/main-2.py)
+[Proceso completo](/mlapi/Chatbot_V3-2.ipynb)
 
 ## Documentación del despliegue
 
