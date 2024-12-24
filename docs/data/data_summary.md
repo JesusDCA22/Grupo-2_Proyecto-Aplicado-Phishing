@@ -54,15 +54,15 @@ En base al análisis preliminar, las variables más influyentes para el análisi
   - Nike: 30%.  
   - Nation Runner: 11%.  
 
-![Distribución de "store"](../../scripts/eda/edaImages/storeDistribution.png)
+![Distribución de "store"][def3]
 
 - **Categorías más frecuentes en `manufacturer`**:  
 
-![Distribución de "manufacturer"](../../scripts\eda\edaImages\manufacturerDistribution.png)
+![Distribución de "manufacturer"][def]
 
 - **Categorías más frecuentes en `gender`**:  
 
-![Distribución de "gender"](../../scripts\eda\edaImages\genderDistribution.png)
+![Distribución de "gender"][def2]
 
 ### Relación entre `category` y `regularPrice`
 
@@ -77,3 +77,8 @@ En base al análisis preliminar, las variables más influyentes para el análisi
 
 - Las categorías y características técnicas (`details` y `characteristics`) son clave para el análisis comparativo.  
 - Es necesario normalizar distintos valores, como los precios, para futuros análisis.  
+
+
+[def]: ../../scripts\eda\edaImages\manufacturerDistribution.png
+[def2]: ../../scripts\eda\edaImages\genderDistribution.png
+[def3]: ../../scripts/eda/edaImages/storeDistribution.png
