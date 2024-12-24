@@ -1,0 +1,68 @@
+```python
+from flask import Flask, request, jsonify
+import numpy as np
+import pandas as pd
+import tensorflow as tf
+from tensorflow import keras
+
+app = Flask(__name__)
+
+# Asume que has cargado tu modelo previamente (fuera del endpoint)
+model = keras.models.load_model("mi_modelo_final")  # Ajusta la ruta a tu modelo
+
+# Cargar el preprocessor que se usó en el entrenamiento
+# Esto depende de cómo lo hayas serializado. Si no lo has guardado, deberás reconstruirlo igual que en el entrenamiento.
+# Aquí se asume que lo tienes disponible en el entorno:
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+# Ajusta las columnas según tu caso real:
+numerical_cols = ['Drop heel-to-toe differential', 'Weight', 'regularPrice','undiscounted_price','percentil_discounted']
+categorical_cols = ['Midsole_Material', 'Cushioning_System', 'Outsole', 'Upper_Material', 
+                    'Additional_Technologies', 'Gender']
+
+numeric_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='median')),
+    ('scaler', StandardScaler())
+])
+
+categorical_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='most_frequent')),
+    ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=False))
+])
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numeric_transformer, numerical_cols),
+        ('cat', categorical_transformer, categorical_cols)
+    ]
+)
+
+# Asumimos que dispones de las categorías originales tal como se entrenaron
+# Por ejemplo:
+categories = ['Cluster0', 'Cluster1', 'Cluster2']  # Ajusta según tus categorías reales
+
+@app.route('/classify', methods=['POST'])
+def classify():
+    # Se espera un JSON con las llaves que coincidan con las columnas esperadas
+    data = request.get_json()
+    # Crear DataFrame con el nuevo elemento
+    # Asumimos que 'data' es un dict con las columnas correctas
+    nuevo_elemento = pd.DataFrame([data])  # Convierte el dict a DF con una fila
+    
+    # Preprocesar
+    X_new_processed = preprocessor.transform(nuevo_elemento)
+    
+    # Predecir
+    y_pred_proba = model.predict(X_new_processed)
+    y_pred_class = np.argmax(y_pred_proba, axis=1)
+    predicted_cluster = categories[y_pred_class[0]]
+
+    # Retornar la predicción en formato JSON
+    return jsonify({'prediction': predicted_cluster})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+```

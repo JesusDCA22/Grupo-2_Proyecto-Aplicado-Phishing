@@ -51,4 +51,4 @@ class ApiReader:
             data = self.fetch_data()
             self.save_to_excel(data)
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"Error fetch_and_save_data: {e}")

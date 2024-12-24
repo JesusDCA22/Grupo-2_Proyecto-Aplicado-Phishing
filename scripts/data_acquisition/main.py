@@ -1,4 +1,4 @@
-from scripts.data_acquisition.api_reader import ApiReader
+from api_reader import ApiReader
 
 def main():
     # Crear instancia de ApiReader
