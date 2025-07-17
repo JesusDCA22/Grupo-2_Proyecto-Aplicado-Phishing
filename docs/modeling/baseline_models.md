@@ -3,11 +3,6 @@
 ## Descripción del Proyecto
 Sistema de detección de phishing para protección financiera en Colombia implementando una red neuronal como modelo baseline. El objetivo es clasificar correos electrónicos como legítimos (0) o fraudulentos (1).
 
-## Integrantes del Equipo
-- Jesús David Castro Afanador
-- Miguel Angel Medina Rangel  
-- Federico Negret Cubillos
-
 ## Librerías Principales
 ```python
 import pandas as pd
