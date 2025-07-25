@@ -92,13 +92,72 @@ A continuación se presenta un diagrama textual que ilustra el flujo de una soli
 ```
 ## Código de despliegue
 
-- **Archivo principal:** (nombre del archivo principal que contiene el código de despliegue)
-- **Rutas de acceso a los archivos:** (lista de rutas de acceso a los archivos necesarios para el despliegue)
-- **Variables de entorno:** (lista de variables de entorno necesarias para el despliegue)
+* **Archivo principal:** Despliegue_MLFlow_Phishing.py
+* **Rutas de acceso a los archivos:** 
+    * **Despliegue_MLFlow_Phishing.py:** script donde se ejecuta el código que configura la URI de MLflow
+    * **models:/airline_delay/1** Como MLflow accede al modelo desde Model Registry (Se debe actualizar si el nombre del modelo o la vrsion cambian)
+* **Variable de entorno:**
+     * **URI para MLflow:** URL del servidor de MLflow que se está usando para registrar y servir modelos.
+ ```bash
+  export MLFLOW_TRACKING_URI=http://localhost:5000
+```
 
 ## Documentación del despliegue
 
-- **Instrucciones de instalación:** (instrucciones detalladas para instalar el modelo en la plataforma de despliegue)
-- **Instrucciones de configuración:** (instrucciones detalladas para configurar el modelo en la plataforma de despliegue)
-- **Instrucciones de uso:** (instrucciones detalladas para utilizar el modelo en la plataforma de despliegue)
-- **Instrucciones de mantenimiento:** (instrucciones detalladas para mantener el modelo en la plataforma de despliegue)
+* **Instrucciones de instalación:** 
+     *  Clonar el repositorio del proyecto en la máquina donde se realizará el despliegue, asegurándose de tener Python y MLflow instalados:
+  ```bash
+      git clone <URL_DEL_REPOSITORIO>
+      cd <NOMBRE_DEL_PROYECTO>
+      pip install -r requirements.txt
+   ``` 
+  Esto garantiza que tengas todos los archivos del proyecto y las dependencias necesarias para ejecutar el modelo.
+  
+* **Instrucciones de configuración:**
+   * Definir las variables de entorno necesarias antes de iniciar el servidor:
+  
+     ```bash
+         export MLFLOW_TRACKING_URI=http://localhost:5000
+      ```
+     
+  Con lo que se configura la dirección del servidor de MLflow donde se encuentra el modelo registrado. (En este caso el servidor MLflow está corriendo localmente en el puerto 5000, pero se puede cambiar con una IP o dominio si es un servidor remoto)
+
+* **Instrucciones de uso:** 
+   * Lanzar el servidor REST del modelo con el siguiente comando:
+   ```bash
+         mlflow models serve -m 'models:/airline_delay/1' -p 8001 --env-manager 'local' &
+   ``` 
+Esto inicia un servicio en el puerto 8001, sirviendo la versión 1 del modelo airline_delay desde el Model Registry de MLflow.
+El parámetro --env-manager 'local' permite usar el entorno de Python actual sin necesidad de contenedores o entornos adicionales.
+   * Para enviar datos de prueba al modelo y obtener una predicción desde un cliente, puedes usar Python:
+  ```python
+      import requests
+
+data_request = features_test[:2].tolist()
+r = requests.post("http://localhost:8001/invocations", json={"inputs": data_request})
+print(r.text)
+
+   ```
+Esto envía los datos como JSON al servidor y retorna la respuesta del modelo.
+
+* **Instrucciones de mantenimiento:**
+     * Para verificar si el modelo sigue corriendo correctamente:
+       ```bash
+       ps aux | grep mlflow
+        ``` 
+       
+     * Para detener el servicio si es necesario:
+        ```bash
+        pkill -f "mlflow models serve"
+         ```
+       
+     * Para actualizar el modelo a una nueva versión (por ejemplo, versión 2):   
+         ```bash
+            pkill -f "mlflow models serve"
+            mlflow models serve -m 'models:/airline_delay/2' -p 8001 --env-manager 'local' &
+         ```
+
+   *  Para revisar posibles errores durante la ejecución:
+      ```bash
+         tail -f mlflow.log
+      ```  
