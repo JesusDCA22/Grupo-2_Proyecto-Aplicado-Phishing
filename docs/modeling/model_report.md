@@ -21,7 +21,7 @@ Este proyecto tiene como objetivo desarrollar un modelo de clasificación para l
 
 ## Descripción del Modelo
 
-El modelo final fue una red neuronal secuencial con una capa oculta de 192 neuronas y activación ReLU y una capa de salida softmax. Usamos Adam como optimizador con un learning rate de 0.0047, y la pérdida fue categorical crossentropy. Probamos cuatro modelos distintos (combinando activaciones ReLU/Sigmoid y 1 o 2 capas ocultas), y cada uno pasó por una búsqueda aleatoria de hiperparámetros con Keras Tuner, ajustando el número de neuronas (32–512), el dropout (0.1–0.5) y el learning rate (0.0001–0.01). El mejor modelo alcanzó un AUC de 0.9205, recall de 83.4% y accuracy de 83.4%.
+El modelo final fue una red neuronal secuencial con una capa oculta de 192 neuronas y activación ReLU y una capa de salida softmax. Usamos Adam como optimizador con un learning rate de 0.0047, y la pérdida fue categorical crossentropy. Probamos cuatro modelos distintos (combinando activaciones ReLU/Sigmoid y 1 o 2 capas ocultas), y cada uno pasó por una búsqueda aleatoria de hiperparámetros con Keras Tuner, ajustando el número de neuronas (32–512), el dropout (0.1–0.5) y el learning rate (0.0001–0.01). El mejor modelo alcanzó un AUC de 0.9205, recall de 83.4% y accuracy de 83.3%.
 
 ## Arquitectura del Modelo
 ```
@@ -56,7 +56,7 @@ En esta sección se presentará una evaluación detallada del modelo final. Se d
 Métricas Finales:
 - Accuracy: 0.8198
 - AUC: 0.9003
-- Recall: 0.8198
+- Recall: 0.8196
 
 
 ### Curva ROC
