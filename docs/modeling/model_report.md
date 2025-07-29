@@ -21,13 +21,13 @@ Este proyecto tiene como objetivo desarrollar un modelo de clasificación para l
 
 ## Descripción del Modelo
 
-El modelo final fue una red neuronal secuencial con una capa oculta de 192 neuronas y activación ReLU, seguida de un Dropout del 30% y una capa de salida softmax. Usamos Adam como optimizador con un learning rate de 0.0047, y la pérdida fue categorical crossentropy. Probamos cuatro modelos distintos (combinando activaciones ReLU/Sigmoid y 1 o 2 capas ocultas), y cada uno pasó por una búsqueda aleatoria de hiperparámetros con Keras Tuner, ajustando el número de neuronas (32–512), el dropout (0.1–0.5) y el learning rate (0.0001–0.01). El mejor modelo alcanzó un AUC de 0.9205, recall de 83.4% y accuracy de 83.4%.
+El modelo final fue una red neuronal secuencial con una capa oculta de 192 neuronas y activación ReLU y una capa de salida softmax. Usamos Adam como optimizador con un learning rate de 0.0047, y la pérdida fue categorical crossentropy. Probamos cuatro modelos distintos (combinando activaciones ReLU/Sigmoid y 1 o 2 capas ocultas), y cada uno pasó por una búsqueda aleatoria de hiperparámetros con Keras Tuner, ajustando el número de neuronas (32–512), el dropout (0.1–0.5) y el learning rate (0.0001–0.01). El mejor modelo alcanzó un AUC de 0.9205, recall de 83.4% y accuracy de 83.4%.
 
 ## Arquitectura del Modelo
 ```
 model = Sequential([
     Dense(64, activation='relu', input_shape=(85,)),
-    Dropout(0.3),
+    Dropout(0.4),
     Dense(2, activation='softmax')
 ])
 model.compile(
