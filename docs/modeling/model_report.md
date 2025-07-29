@@ -27,7 +27,7 @@ El modelo final fue una red neuronal secuencial con una capa oculta de 192 neuro
 ```
 model = Sequential([
     Dense(64, activation='relu', input_shape=(85,)),
-    Dropout(0.4),
+    Dropout(0.3),
     Dense(2, activation='softmax')
 ])
 model.compile(
